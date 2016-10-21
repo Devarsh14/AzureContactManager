@@ -1,14 +1,9 @@
-﻿@{
+﻿@model AzureContactManager.Models.AboutModel
+@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-<h1>Devarsh first azure dev</h1>
 
-<p>Use this area to provide additional information. Devvarsh shukla</p>
-<p>This is my first succesfull azure deployment from github</p>
-<h2>devarsh is here </h2>
-<h1> Thsi is himadri</h1>
-<h1> Thsi is Devarsh</h1>
-<h2> This is a second git from MAc</h2>
-<h3>  third commit mac</h3>
+<h2>@ViewBag.Title.</h2>
+
+<div>Location :@Model.Location</div>
+<div>Name :@Model.Name</div>
