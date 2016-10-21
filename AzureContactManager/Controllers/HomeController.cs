@@ -12,11 +12,14 @@ namespace AzureContactManager.Controllers
     {
         public ActionResult Index()
         {
-            var controller = RouteData.Values["controller"];
-            var action = RouteData.Values["action"];
-            var id = RouteData.Values["id"];
-            var message = string.Format("{0}::{1}{2}", controller, action, id);
-            ViewBag.Message = message;
+            int min = 1;
+            int max = 100;
+            Random rnd = new Random();
+            int rd= rnd.Next(min, max);
+            string a = rd.ToString();
+            ViewBag.No = a;
+
+
             return View();
         }
 
