@@ -14,6 +14,9 @@ namespace AzureContactManager.Controllers
         AzureContactManagerDev_dbEntities2 _entities = new AzureContactManagerDev_dbEntities2();
         public ActionResult Index()
         {
+            Vendor vendor = new Vendor();
+            
+
 
             
 
