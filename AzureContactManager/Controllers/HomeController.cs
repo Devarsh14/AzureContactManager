@@ -15,7 +15,7 @@ namespace AzureContactManager.Controllers
         public ActionResult Index()
         {
 
-
+            
 
 
             return View(_entities.Vendors.ToList());
