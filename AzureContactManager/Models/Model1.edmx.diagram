@@ -4,9 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e25ed4a8b64f482f98911f96bd7b29df" Name="Diagram1">
+      <Diagram DiagramId="3773fed4c0804d88801cc1a79b9d950a" Name="Diagram1">
         <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Vendor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Warehouse" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

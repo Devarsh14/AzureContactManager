@@ -34,19 +34,6 @@ warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Vendor' does not hav
           <Property Name="AllowCustomersToSelectPageSize" Type="bit" Nullable="false" />
           <Property Name="PageSizeOptions" Type="nvarchar" MaxLength="200" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Warehouse' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Warehouse">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="AddressId" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
-          <Property Name="AdminComment" Type="nvarchar(max)" />
-          <Property Name="AddressId" Type="int" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="AzureContactManagerDev_dbModelStoreContainer">
           <EntitySet Name="Vendor" EntityType="Self.Vendor" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -66,14 +53,6 @@ warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Warehouse' does not 
     [Vendor].[AllowCustomersToSelectPageSize] AS [AllowCustomersToSelectPageSize], 
     [Vendor].[PageSizeOptions] AS [PageSizeOptions]
     FROM [dbo].[Vendor] AS [Vendor]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Warehouse].[Id] AS [Id], 
-    [Warehouse].[Name] AS [Name], 
-    [Warehouse].[AdminComment] AS [AdminComment], 
-    [Warehouse].[AddressId] AS [AddressId]
-    FROM [dbo].[Warehouse] AS [Warehouse]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema>
@@ -108,27 +87,15 @@ warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Warehouse' does not 
           <Property Name="AllowCustomersToSelectPageSize" Type="Boolean" Nullable="false" />
           <Property Name="PageSizeOptions" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Warehouse">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="AddressId" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AdminComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AddressId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityContainer Name="AzureContactManagerDev_dbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AzureContactManagerDev_dbEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Vendors" EntityType="Self.Vendor" />
-          <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AzureContactManagerDev_dbModelStoreContainer" CdmEntityContainer="AzureContactManagerDev_dbEntities">
+        <EntityContainerMapping StorageEntityContainer="AzureContactManagerDev_dbModelStoreContainer" CdmEntityContainer="AzureContactManagerDev_dbEntities2">
           <EntitySetMapping Name="Vendors">
             <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Vendor">
               <MappingFragment StoreEntitySet="Vendor">
@@ -147,16 +114,6 @@ warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Warehouse' does not 
                 <ScalarProperty Name="PageSize" ColumnName="PageSize" />
                 <ScalarProperty Name="AllowCustomersToSelectPageSize" ColumnName="AllowCustomersToSelectPageSize" />
                 <ScalarProperty Name="PageSizeOptions" ColumnName="PageSizeOptions" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Warehouses">
-            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Warehouse">
-              <MappingFragment StoreEntitySet="Warehouse">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="AdminComment" ColumnName="AdminComment" />
-                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

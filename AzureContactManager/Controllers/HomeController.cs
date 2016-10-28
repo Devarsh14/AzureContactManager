@@ -10,17 +10,15 @@ namespace AzureContactManager.Controllers
 {
     public class HomeController : Controller
     {
+        // private Vendor vendor= new Vendor();
+        AzureContactManagerDev_dbEntities2 _entities = new AzureContactManagerDev_dbEntities2();
         public ActionResult Index()
         {
-            int min = 1;
-            int max = 100;
-            Random rnd = new Random();
-            int rd= rnd.Next(min, max);
-            string a = rd.ToString();
-            ViewBag.No = a;
 
 
-            return View();
+
+
+            return View(_entities.Vendors.ToList());
         }
 
         public ActionResult About()

@@ -13,10 +13,10 @@ namespace AzureContactManager.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AzureContactManagerDev_dbEntities : DbContext
+    public partial class AzureContactManagerDev_dbEntities2 : DbContext
     {
-        public AzureContactManagerDev_dbEntities()
-            : base("name=AzureContactManagerDev_dbEntities")
+        public AzureContactManagerDev_dbEntities2()
+            : base("name=AzureContactManagerDev_dbEntities2")
         {
         }
     
@@ -26,6 +26,5 @@ namespace AzureContactManager.Models
         }
     
         public virtual DbSet<Vendor> Vendors { get; set; }
-        public virtual DbSet<Warehouse> Warehouses { get; set; }
     }
 }
