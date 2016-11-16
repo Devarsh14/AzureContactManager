@@ -26,5 +26,24 @@ namespace AzureContactManager.Models
         }
     
         public virtual DbSet<Vendor> Vendors { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Currency> Currencies { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<DeliveryDate> DeliveryDates { get; set; }
+        public virtual DbSet<Discount> Discounts { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Product_Category_Mapping> Product_Category_Mapping { get; set; }
+        public virtual DbSet<Store> Stores { get; set; }
+        public virtual DbSet<TaxRate> TaxRates { get; set; }
+        public virtual DbSet<Warehouse> Warehouses { get; set; }
     }
 }
