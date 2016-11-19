@@ -1,0 +1,21 @@
+﻿ @model IEnumerable<AzureContactManager.Models.OrderItem>
+@{
+    ViewBag.Title = "ShowProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ProductList</h2>
+@if (Model != null)
+{
+    <ul>
+        @foreach (var item in Model)
+        {
+                <li>
+                    product Name:@item.Quantity
+                    <br/>
+                    price: @item.ProductId
+                </li>
+        }
+    </ul>
+
+}
