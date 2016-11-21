@@ -20,6 +20,9 @@ namespace AzureContactManager.Models
         }
 
         //methods 
-
+        public void Add(Product mh,int soluong=1)
+        {
+            
+        }
     }
 }
