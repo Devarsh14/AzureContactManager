@@ -20,8 +20,9 @@ namespace AzureContactManager.Controllers
         public ActionResult ShowProduct()
         {
             
-            return View(db.OrderItems.ToList());
+            return View(db.Products.ToList());
             
         }
+       
     }
 }

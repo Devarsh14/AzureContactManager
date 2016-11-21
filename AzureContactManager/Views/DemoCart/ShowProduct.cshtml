@@ -1,4 +1,4 @@
-﻿ @model IEnumerable<AzureContactManager.Models.OrderItem>
+﻿ @model IEnumerable<AzureContactManager.Models.Product>
 @{
     ViewBag.Title = "ShowProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,9 +11,13 @@
         @foreach (var item in Model)
         {
                 <li>
-                    product Name:@item.Quantity
+                    product Name: @item.Name
                     <br/>
-                    price: @item.ProductId
+                    price: @item.Price
+                    <br/> 
+                    description @item.ShortDescription
+                    <br />
+                    <a href="/DemoCart/Add/@item.Id">Add to cart</a>
                 </li>
         }
     </ul>
