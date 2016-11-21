@@ -4,7 +4,681 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AzureContactManagerDev_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AzureContactManagerDev_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Category' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="CategoryTemplateId" />
+            <PropertyRef Name="ParentCategoryId" />
+            <PropertyRef Name="PictureId" />
+            <PropertyRef Name="PageSize" />
+            <PropertyRef Name="AllowCustomersToSelectPageSize" />
+            <PropertyRef Name="ShowOnHomePage" />
+            <PropertyRef Name="IncludeInTopMenu" />
+            <PropertyRef Name="SubjectToAcl" />
+            <PropertyRef Name="LimitedToStores" />
+            <PropertyRef Name="Published" />
+            <PropertyRef Name="Deleted" />
+            <PropertyRef Name="DisplayOrder" />
+            <PropertyRef Name="CreatedOnUtc" />
+            <PropertyRef Name="UpdatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CategoryTemplateId" Type="int" Nullable="false" />
+          <Property Name="MetaKeywords" Type="nvarchar" MaxLength="400" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="MetaTitle" Type="nvarchar" MaxLength="400" />
+          <Property Name="ParentCategoryId" Type="int" Nullable="false" />
+          <Property Name="PictureId" Type="int" Nullable="false" />
+          <Property Name="PageSize" Type="int" Nullable="false" />
+          <Property Name="AllowCustomersToSelectPageSize" Type="bit" Nullable="false" />
+          <Property Name="PageSizeOptions" Type="nvarchar" MaxLength="200" />
+          <Property Name="PriceRanges" Type="nvarchar" MaxLength="400" />
+          <Property Name="ShowOnHomePage" Type="bit" Nullable="false" />
+          <Property Name="IncludeInTopMenu" Type="bit" Nullable="false" />
+          <Property Name="SubjectToAcl" Type="bit" Nullable="false" />
+          <Property Name="LimitedToStores" Type="bit" Nullable="false" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedOnUtc" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Country' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="AllowsBilling" />
+            <PropertyRef Name="AllowsShipping" />
+            <PropertyRef Name="NumericIsoCode" />
+            <PropertyRef Name="SubjectToVat" />
+            <PropertyRef Name="Published" />
+            <PropertyRef Name="DisplayOrder" />
+            <PropertyRef Name="LimitedToStores" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AllowsBilling" Type="bit" Nullable="false" />
+          <Property Name="AllowsShipping" Type="bit" Nullable="false" />
+          <Property Name="TwoLetterIsoCode" Type="nvarchar" MaxLength="2" />
+          <Property Name="ThreeLetterIsoCode" Type="nvarchar" MaxLength="3" />
+          <Property Name="NumericIsoCode" Type="int" Nullable="false" />
+          <Property Name="SubjectToVat" Type="bit" Nullable="false" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="LimitedToStores" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Currency' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="CurrencyCode" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="LimitedToStores" />
+            <PropertyRef Name="Published" />
+            <PropertyRef Name="DisplayOrder" />
+            <PropertyRef Name="CreatedOnUtc" />
+            <PropertyRef Name="UpdatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="DisplayLocale" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomFormatting" Type="nvarchar" MaxLength="50" />
+          <Property Name="LimitedToStores" Type="bit" Nullable="false" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedOnUtc" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CustomerGuid" />
+            <PropertyRef Name="PasswordFormatId" />
+            <PropertyRef Name="IsTaxExempt" />
+            <PropertyRef Name="AffiliateId" />
+            <PropertyRef Name="VendorId" />
+            <PropertyRef Name="HasShoppingCartItems" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="Deleted" />
+            <PropertyRef Name="IsSystemAccount" />
+            <PropertyRef Name="CreatedOnUtc" />
+            <PropertyRef Name="LastActivityDateUtc" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CustomerGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Email" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="PasswordFormatId" Type="int" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar(max)" />
+          <Property Name="AdminComment" Type="nvarchar(max)" />
+          <Property Name="IsTaxExempt" Type="bit" Nullable="false" />
+          <Property Name="AffiliateId" Type="int" Nullable="false" />
+          <Property Name="VendorId" Type="int" Nullable="false" />
+          <Property Name="HasShoppingCartItems" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="IsSystemAccount" Type="bit" Nullable="false" />
+          <Property Name="SystemName" Type="nvarchar" MaxLength="400" />
+          <Property Name="LastIpAddress" Type="nvarchar(max)" />
+          <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDateUtc" Type="datetime" />
+          <Property Name="LastActivityDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="BillingAddress_Id" Type="int" />
+          <Property Name="ShippingAddress_Id" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.DeliveryDate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DeliveryDate">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="DisplayOrder" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Discount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="DiscountTypeId" />
+            <PropertyRef Name="UsePercentage" />
+            <PropertyRef Name="DiscountPercentage" />
+            <PropertyRef Name="DiscountAmount" />
+            <PropertyRef Name="RequiresCouponCode" />
+            <PropertyRef Name="IsCumulative" />
+            <PropertyRef Name="DiscountLimitationId" />
+            <PropertyRef Name="LimitationTimes" />
+            <PropertyRef Name="AppliedToSubCategories" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DiscountTypeId" Type="int" Nullable="false" />
+          <Property Name="UsePercentage" Type="bit" Nullable="false" />
+          <Property Name="DiscountPercentage" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="DiscountAmount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="MaximumDiscountAmount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="StartDateUtc" Type="datetime" />
+          <Property Name="EndDateUtc" Type="datetime" />
+          <Property Name="RequiresCouponCode" Type="bit" Nullable="false" />
+          <Property Name="CouponCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsCumulative" Type="bit" Nullable="false" />
+          <Property Name="DiscountLimitationId" Type="int" Nullable="false" />
+          <Property Name="LimitationTimes" Type="int" Nullable="false" />
+          <Property Name="MaximumDiscountedQuantity" Type="int" />
+          <Property Name="AppliedToSubCategories" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="LogLevelId" />
+            <PropertyRef Name="ShortMessage" />
+            <PropertyRef Name="CreatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LogLevelId" Type="int" Nullable="false" />
+          <Property Name="ShortMessage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FullMessage" Type="nvarchar(max)" />
+          <Property Name="IpAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="PageUrl" Type="nvarchar(max)" />
+          <Property Name="ReferrerUrl" Type="nvarchar(max)" />
+          <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Manufacturer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ManufacturerTemplateId" />
+            <PropertyRef Name="PictureId" />
+            <PropertyRef Name="PageSize" />
+            <PropertyRef Name="AllowCustomersToSelectPageSize" />
+            <PropertyRef Name="SubjectToAcl" />
+            <PropertyRef Name="LimitedToStores" />
+            <PropertyRef Name="Published" />
+            <PropertyRef Name="Deleted" />
+            <PropertyRef Name="DisplayOrder" />
+            <PropertyRef Name="CreatedOnUtc" />
+            <PropertyRef Name="UpdatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ManufacturerTemplateId" Type="int" Nullable="false" />
+          <Property Name="MetaKeywords" Type="nvarchar" MaxLength="400" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="MetaTitle" Type="nvarchar" MaxLength="400" />
+          <Property Name="PictureId" Type="int" Nullable="false" />
+          <Property Name="PageSize" Type="int" Nullable="false" />
+          <Property Name="AllowCustomersToSelectPageSize" Type="bit" Nullable="false" />
+          <Property Name="PageSizeOptions" Type="nvarchar" MaxLength="200" />
+          <Property Name="PriceRanges" Type="nvarchar" MaxLength="400" />
+          <Property Name="SubjectToAcl" Type="bit" Nullable="false" />
+          <Property Name="LimitedToStores" Type="bit" Nullable="false" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedOnUtc" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Order' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="OrderGuid" />
+            <PropertyRef Name="StoreId" />
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="BillingAddressId" />
+            <PropertyRef Name="PickUpInStore" />
+            <PropertyRef Name="OrderStatusId" />
+            <PropertyRef Name="ShippingStatusId" />
+            <PropertyRef Name="PaymentStatusId" />
+            <PropertyRef Name="CurrencyRate" />
+            <PropertyRef Name="CustomerTaxDisplayTypeId" />
+            <PropertyRef Name="OrderSubtotalInclTax" />
+            <PropertyRef Name="OrderSubtotalExclTax" />
+            <PropertyRef Name="OrderSubTotalDiscountInclTax" />
+            <PropertyRef Name="OrderSubTotalDiscountExclTax" />
+            <PropertyRef Name="OrderShippingInclTax" />
+            <PropertyRef Name="OrderShippingExclTax" />
+            <PropertyRef Name="PaymentMethodAdditionalFeeInclTax" />
+            <PropertyRef Name="PaymentMethodAdditionalFeeExclTax" />
+            <PropertyRef Name="OrderTax" />
+            <PropertyRef Name="OrderDiscount" />
+            <PropertyRef Name="OrderTotal" />
+            <PropertyRef Name="RefundedAmount" />
+            <PropertyRef Name="RewardPointsWereAdded" />
+            <PropertyRef Name="CustomerLanguageId" />
+            <PropertyRef Name="AffiliateId" />
+            <PropertyRef Name="AllowStoringCreditCardNumber" />
+            <PropertyRef Name="Deleted" />
+            <PropertyRef Name="CreatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="OrderGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="BillingAddressId" Type="int" Nullable="false" />
+          <Property Name="ShippingAddressId" Type="int" />
+          <Property Name="PickupAddressId" Type="int" />
+          <Property Name="PickUpInStore" Type="bit" Nullable="false" />
+          <Property Name="OrderStatusId" Type="int" Nullable="false" />
+          <Property Name="ShippingStatusId" Type="int" Nullable="false" />
+          <Property Name="PaymentStatusId" Type="int" Nullable="false" />
+          <Property Name="PaymentMethodSystemName" Type="nvarchar(max)" />
+          <Property Name="CustomerCurrencyCode" Type="nvarchar(max)" />
+          <Property Name="CurrencyRate" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="CustomerTaxDisplayTypeId" Type="int" Nullable="false" />
+          <Property Name="VatNumber" Type="nvarchar(max)" />
+          <Property Name="OrderSubtotalInclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OrderSubtotalExclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OrderSubTotalDiscountInclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OrderSubTotalDiscountExclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OrderShippingInclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OrderShippingExclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PaymentMethodAdditionalFeeInclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PaymentMethodAdditionalFeeExclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="TaxRates" Type="nvarchar(max)" />
+          <Property Name="OrderTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OrderDiscount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OrderTotal" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="RefundedAmount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="RewardPointsWereAdded" Type="bit" Nullable="false" />
+          <Property Name="CheckoutAttributeDescription" Type="nvarchar(max)" />
+          <Property Name="CheckoutAttributesXml" Type="nvarchar(max)" />
+          <Property Name="CustomerLanguageId" Type="int" Nullable="false" />
+          <Property Name="AffiliateId" Type="int" Nullable="false" />
+          <Property Name="CustomerIp" Type="nvarchar(max)" />
+          <Property Name="AllowStoringCreditCardNumber" Type="bit" Nullable="false" />
+          <Property Name="CardType" Type="nvarchar(max)" />
+          <Property Name="CardName" Type="nvarchar(max)" />
+          <Property Name="CardNumber" Type="nvarchar(max)" />
+          <Property Name="MaskedCreditCardNumber" Type="nvarchar(max)" />
+          <Property Name="CardCvv2" Type="nvarchar(max)" />
+          <Property Name="CardExpirationMonth" Type="nvarchar(max)" />
+          <Property Name="CardExpirationYear" Type="nvarchar(max)" />
+          <Property Name="AuthorizationTransactionId" Type="nvarchar(max)" />
+          <Property Name="AuthorizationTransactionCode" Type="nvarchar(max)" />
+          <Property Name="AuthorizationTransactionResult" Type="nvarchar(max)" />
+          <Property Name="CaptureTransactionId" Type="nvarchar(max)" />
+          <Property Name="CaptureTransactionResult" Type="nvarchar(max)" />
+          <Property Name="SubscriptionTransactionId" Type="nvarchar(max)" />
+          <Property Name="PaidDateUtc" Type="datetime" />
+          <Property Name="ShippingMethod" Type="nvarchar(max)" />
+          <Property Name="ShippingRateComputationMethodSystemName" Type="nvarchar(max)" />
+          <Property Name="CustomValuesXml" Type="nvarchar(max)" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.OrderItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="OrderItemGuid" />
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="UnitPriceInclTax" />
+            <PropertyRef Name="UnitPriceExclTax" />
+            <PropertyRef Name="PriceInclTax" />
+            <PropertyRef Name="PriceExclTax" />
+            <PropertyRef Name="DiscountAmountInclTax" />
+            <PropertyRef Name="DiscountAmountExclTax" />
+            <PropertyRef Name="OriginalProductCost" />
+            <PropertyRef Name="DownloadCount" />
+            <PropertyRef Name="IsDownloadActivated" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="OrderItemGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UnitPriceInclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="UnitPriceExclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PriceInclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PriceExclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="DiscountAmountInclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="DiscountAmountExclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OriginalProductCost" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="AttributeDescription" Type="nvarchar(max)" />
+          <Property Name="AttributesXml" Type="nvarchar(max)" />
+          <Property Name="DownloadCount" Type="int" Nullable="false" />
+          <Property Name="IsDownloadActivated" Type="bit" Nullable="false" />
+          <Property Name="LicenseDownloadId" Type="int" />
+          <Property Name="ItemWeight" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RentalStartDateUtc" Type="datetime" />
+          <Property Name="RentalEndDateUtc" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Product' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductTypeId" />
+            <PropertyRef Name="ParentGroupedProductId" />
+            <PropertyRef Name="VisibleIndividually" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ProductTemplateId" />
+            <PropertyRef Name="VendorId" />
+            <PropertyRef Name="ShowOnHomePage" />
+            <PropertyRef Name="AllowCustomerReviews" />
+            <PropertyRef Name="ApprovedRatingSum" />
+            <PropertyRef Name="NotApprovedRatingSum" />
+            <PropertyRef Name="ApprovedTotalReviews" />
+            <PropertyRef Name="NotApprovedTotalReviews" />
+            <PropertyRef Name="SubjectToAcl" />
+            <PropertyRef Name="LimitedToStores" />
+            <PropertyRef Name="IsGiftCard" />
+            <PropertyRef Name="GiftCardTypeId" />
+            <PropertyRef Name="RequireOtherProducts" />
+            <PropertyRef Name="AutomaticallyAddRequiredProducts" />
+            <PropertyRef Name="IsDownload" />
+            <PropertyRef Name="DownloadId" />
+            <PropertyRef Name="UnlimitedDownloads" />
+            <PropertyRef Name="MaxNumberOfDownloads" />
+            <PropertyRef Name="DownloadActivationTypeId" />
+            <PropertyRef Name="HasSampleDownload" />
+            <PropertyRef Name="SampleDownloadId" />
+            <PropertyRef Name="HasUserAgreement" />
+            <PropertyRef Name="IsRecurring" />
+            <PropertyRef Name="RecurringCycleLength" />
+            <PropertyRef Name="RecurringCyclePeriodId" />
+            <PropertyRef Name="RecurringTotalCycles" />
+            <PropertyRef Name="IsRental" />
+            <PropertyRef Name="RentalPriceLength" />
+            <PropertyRef Name="RentalPricePeriodId" />
+            <PropertyRef Name="IsShipEnabled" />
+            <PropertyRef Name="IsFreeShipping" />
+            <PropertyRef Name="ShipSeparately" />
+            <PropertyRef Name="AdditionalShippingCharge" />
+            <PropertyRef Name="DeliveryDateId" />
+            <PropertyRef Name="IsTaxExempt" />
+            <PropertyRef Name="TaxCategoryId" />
+            <PropertyRef Name="IsTelecommunicationsOrBroadcastingOrElectronicServices" />
+            <PropertyRef Name="ManageInventoryMethodId" />
+            <PropertyRef Name="UseMultipleWarehouses" />
+            <PropertyRef Name="WarehouseId" />
+            <PropertyRef Name="StockQuantity" />
+            <PropertyRef Name="DisplayStockAvailability" />
+            <PropertyRef Name="DisplayStockQuantity" />
+            <PropertyRef Name="MinStockQuantity" />
+            <PropertyRef Name="LowStockActivityId" />
+            <PropertyRef Name="NotifyAdminForQuantityBelow" />
+            <PropertyRef Name="BackorderModeId" />
+            <PropertyRef Name="AllowBackInStockSubscriptions" />
+            <PropertyRef Name="OrderMinimumQuantity" />
+            <PropertyRef Name="OrderMaximumQuantity" />
+            <PropertyRef Name="AllowAddingOnlyExistingAttributeCombinations" />
+            <PropertyRef Name="NotReturnable" />
+            <PropertyRef Name="DisableBuyButton" />
+            <PropertyRef Name="DisableWishlistButton" />
+            <PropertyRef Name="AvailableForPreOrder" />
+            <PropertyRef Name="CallForPrice" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="OldPrice" />
+            <PropertyRef Name="ProductCost" />
+            <PropertyRef Name="CustomerEntersPrice" />
+            <PropertyRef Name="MinimumCustomerEnteredPrice" />
+            <PropertyRef Name="MaximumCustomerEnteredPrice" />
+            <PropertyRef Name="BasepriceEnabled" />
+            <PropertyRef Name="BasepriceAmount" />
+            <PropertyRef Name="BasepriceUnitId" />
+            <PropertyRef Name="BasepriceBaseAmount" />
+            <PropertyRef Name="BasepriceBaseUnitId" />
+            <PropertyRef Name="MarkAsNew" />
+            <PropertyRef Name="HasTierPrices" />
+            <PropertyRef Name="HasDiscountsApplied" />
+            <PropertyRef Name="Weight" />
+            <PropertyRef Name="Length" />
+            <PropertyRef Name="Width" />
+            <PropertyRef Name="Height" />
+            <PropertyRef Name="DisplayOrder" />
+            <PropertyRef Name="Published" />
+            <PropertyRef Name="Deleted" />
+            <PropertyRef Name="CreatedOnUtc" />
+            <PropertyRef Name="UpdatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ProductTypeId" Type="int" Nullable="false" />
+          <Property Name="ParentGroupedProductId" Type="int" Nullable="false" />
+          <Property Name="VisibleIndividually" Type="bit" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="ShortDescription" Type="nvarchar(max)" />
+          <Property Name="FullDescription" Type="nvarchar(max)" />
+          <Property Name="AdminComment" Type="nvarchar(max)" />
+          <Property Name="ProductTemplateId" Type="int" Nullable="false" />
+          <Property Name="VendorId" Type="int" Nullable="false" />
+          <Property Name="ShowOnHomePage" Type="bit" Nullable="false" />
+          <Property Name="MetaKeywords" Type="nvarchar" MaxLength="400" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="MetaTitle" Type="nvarchar" MaxLength="400" />
+          <Property Name="AllowCustomerReviews" Type="bit" Nullable="false" />
+          <Property Name="ApprovedRatingSum" Type="int" Nullable="false" />
+          <Property Name="NotApprovedRatingSum" Type="int" Nullable="false" />
+          <Property Name="ApprovedTotalReviews" Type="int" Nullable="false" />
+          <Property Name="NotApprovedTotalReviews" Type="int" Nullable="false" />
+          <Property Name="SubjectToAcl" Type="bit" Nullable="false" />
+          <Property Name="LimitedToStores" Type="bit" Nullable="false" />
+          <Property Name="Sku" Type="nvarchar" MaxLength="400" />
+          <Property Name="ManufacturerPartNumber" Type="nvarchar" MaxLength="400" />
+          <Property Name="Gtin" Type="nvarchar" MaxLength="400" />
+          <Property Name="IsGiftCard" Type="bit" Nullable="false" />
+          <Property Name="GiftCardTypeId" Type="int" Nullable="false" />
+          <Property Name="OverriddenGiftCardAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RequireOtherProducts" Type="bit" Nullable="false" />
+          <Property Name="RequiredProductIds" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AutomaticallyAddRequiredProducts" Type="bit" Nullable="false" />
+          <Property Name="IsDownload" Type="bit" Nullable="false" />
+          <Property Name="DownloadId" Type="int" Nullable="false" />
+          <Property Name="UnlimitedDownloads" Type="bit" Nullable="false" />
+          <Property Name="MaxNumberOfDownloads" Type="int" Nullable="false" />
+          <Property Name="DownloadExpirationDays" Type="int" />
+          <Property Name="DownloadActivationTypeId" Type="int" Nullable="false" />
+          <Property Name="HasSampleDownload" Type="bit" Nullable="false" />
+          <Property Name="SampleDownloadId" Type="int" Nullable="false" />
+          <Property Name="HasUserAgreement" Type="bit" Nullable="false" />
+          <Property Name="UserAgreementText" Type="nvarchar(max)" />
+          <Property Name="IsRecurring" Type="bit" Nullable="false" />
+          <Property Name="RecurringCycleLength" Type="int" Nullable="false" />
+          <Property Name="RecurringCyclePeriodId" Type="int" Nullable="false" />
+          <Property Name="RecurringTotalCycles" Type="int" Nullable="false" />
+          <Property Name="IsRental" Type="bit" Nullable="false" />
+          <Property Name="RentalPriceLength" Type="int" Nullable="false" />
+          <Property Name="RentalPricePeriodId" Type="int" Nullable="false" />
+          <Property Name="IsShipEnabled" Type="bit" Nullable="false" />
+          <Property Name="IsFreeShipping" Type="bit" Nullable="false" />
+          <Property Name="ShipSeparately" Type="bit" Nullable="false" />
+          <Property Name="AdditionalShippingCharge" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="DeliveryDateId" Type="int" Nullable="false" />
+          <Property Name="IsTaxExempt" Type="bit" Nullable="false" />
+          <Property Name="TaxCategoryId" Type="int" Nullable="false" />
+          <Property Name="IsTelecommunicationsOrBroadcastingOrElectronicServices" Type="bit" Nullable="false" />
+          <Property Name="ManageInventoryMethodId" Type="int" Nullable="false" />
+          <Property Name="UseMultipleWarehouses" Type="bit" Nullable="false" />
+          <Property Name="WarehouseId" Type="int" Nullable="false" />
+          <Property Name="StockQuantity" Type="int" Nullable="false" />
+          <Property Name="DisplayStockAvailability" Type="bit" Nullable="false" />
+          <Property Name="DisplayStockQuantity" Type="bit" Nullable="false" />
+          <Property Name="MinStockQuantity" Type="int" Nullable="false" />
+          <Property Name="LowStockActivityId" Type="int" Nullable="false" />
+          <Property Name="NotifyAdminForQuantityBelow" Type="int" Nullable="false" />
+          <Property Name="BackorderModeId" Type="int" Nullable="false" />
+          <Property Name="AllowBackInStockSubscriptions" Type="bit" Nullable="false" />
+          <Property Name="OrderMinimumQuantity" Type="int" Nullable="false" />
+          <Property Name="OrderMaximumQuantity" Type="int" Nullable="false" />
+          <Property Name="AllowedQuantities" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AllowAddingOnlyExistingAttributeCombinations" Type="bit" Nullable="false" />
+          <Property Name="NotReturnable" Type="bit" Nullable="false" />
+          <Property Name="DisableBuyButton" Type="bit" Nullable="false" />
+          <Property Name="DisableWishlistButton" Type="bit" Nullable="false" />
+          <Property Name="AvailableForPreOrder" Type="bit" Nullable="false" />
+          <Property Name="PreOrderAvailabilityStartDateTimeUtc" Type="datetime" />
+          <Property Name="CallForPrice" Type="bit" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OldPrice" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="ProductCost" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="SpecialPrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SpecialPriceStartDateTimeUtc" Type="datetime" />
+          <Property Name="SpecialPriceEndDateTimeUtc" Type="datetime" />
+          <Property Name="CustomerEntersPrice" Type="bit" Nullable="false" />
+          <Property Name="MinimumCustomerEnteredPrice" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="MaximumCustomerEnteredPrice" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="BasepriceEnabled" Type="bit" Nullable="false" />
+          <Property Name="BasepriceAmount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="BasepriceUnitId" Type="int" Nullable="false" />
+          <Property Name="BasepriceBaseAmount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="BasepriceBaseUnitId" Type="int" Nullable="false" />
+          <Property Name="MarkAsNew" Type="bit" Nullable="false" />
+          <Property Name="MarkAsNewStartDateTimeUtc" Type="datetime" />
+          <Property Name="MarkAsNewEndDateTimeUtc" Type="datetime" />
+          <Property Name="HasTierPrices" Type="bit" Nullable="false" />
+          <Property Name="HasDiscountsApplied" Type="bit" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Length" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Width" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Height" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="AvailableStartDateTimeUtc" Type="datetime" />
+          <Property Name="AvailableEndDateTimeUtc" Type="datetime" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedOnUtc" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Product_Category_Mapping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Product_Category_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="IsFeaturedProduct" />
+            <PropertyRef Name="DisplayOrder" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="IsFeaturedProduct" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Store' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Url" />
+            <PropertyRef Name="SslEnabled" />
+            <PropertyRef Name="DefaultLanguageId" />
+            <PropertyRef Name="DisplayOrder" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="SslEnabled" Type="bit" Nullable="false" />
+          <Property Name="SecureUrl" Type="nvarchar" MaxLength="400" />
+          <Property Name="Hosts" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DefaultLanguageId" Type="int" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CompanyAddress" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CompanyPhoneNumber" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CompanyVat" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.TaxRate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TaxRate">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="StoreId" />
+            <PropertyRef Name="TaxCategoryId" />
+            <PropertyRef Name="CountryId" />
+            <PropertyRef Name="StateProvinceId" />
+            <PropertyRef Name="Percentage" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="TaxCategoryId" Type="int" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="StateProvinceId" Type="int" Nullable="false" />
+          <Property Name="Zip" Type="nvarchar(max)" />
+          <Property Name="Percentage" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Vendor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Vendor">
@@ -34,7 +708,455 @@ warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Vendor' does not hav
           <Property Name="AllowCustomersToSelectPageSize" Type="bit" Nullable="false" />
           <Property Name="PageSizeOptions" Type="nvarchar" MaxLength="200" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Warehouse' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="AdminComment" Type="nvarchar(max)" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="AzureContactManagerDev_dbModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Category].[Id] AS [Id], 
+    [Category].[Name] AS [Name], 
+    [Category].[Description] AS [Description], 
+    [Category].[CategoryTemplateId] AS [CategoryTemplateId], 
+    [Category].[MetaKeywords] AS [MetaKeywords], 
+    [Category].[MetaDescription] AS [MetaDescription], 
+    [Category].[MetaTitle] AS [MetaTitle], 
+    [Category].[ParentCategoryId] AS [ParentCategoryId], 
+    [Category].[PictureId] AS [PictureId], 
+    [Category].[PageSize] AS [PageSize], 
+    [Category].[AllowCustomersToSelectPageSize] AS [AllowCustomersToSelectPageSize], 
+    [Category].[PageSizeOptions] AS [PageSizeOptions], 
+    [Category].[PriceRanges] AS [PriceRanges], 
+    [Category].[ShowOnHomePage] AS [ShowOnHomePage], 
+    [Category].[IncludeInTopMenu] AS [IncludeInTopMenu], 
+    [Category].[SubjectToAcl] AS [SubjectToAcl], 
+    [Category].[LimitedToStores] AS [LimitedToStores], 
+    [Category].[Published] AS [Published], 
+    [Category].[Deleted] AS [Deleted], 
+    [Category].[DisplayOrder] AS [DisplayOrder], 
+    [Category].[CreatedOnUtc] AS [CreatedOnUtc], 
+    [Category].[UpdatedOnUtc] AS [UpdatedOnUtc]
+    FROM [dbo].[Category] AS [Category]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Country" EntityType="Self.Country" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Country].[Id] AS [Id], 
+    [Country].[Name] AS [Name], 
+    [Country].[AllowsBilling] AS [AllowsBilling], 
+    [Country].[AllowsShipping] AS [AllowsShipping], 
+    [Country].[TwoLetterIsoCode] AS [TwoLetterIsoCode], 
+    [Country].[ThreeLetterIsoCode] AS [ThreeLetterIsoCode], 
+    [Country].[NumericIsoCode] AS [NumericIsoCode], 
+    [Country].[SubjectToVat] AS [SubjectToVat], 
+    [Country].[Published] AS [Published], 
+    [Country].[DisplayOrder] AS [DisplayOrder], 
+    [Country].[LimitedToStores] AS [LimitedToStores]
+    FROM [dbo].[Country] AS [Country]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Currency" EntityType="Self.Currency" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Currency].[Id] AS [Id], 
+    [Currency].[Name] AS [Name], 
+    [Currency].[CurrencyCode] AS [CurrencyCode], 
+    [Currency].[Rate] AS [Rate], 
+    [Currency].[DisplayLocale] AS [DisplayLocale], 
+    [Currency].[CustomFormatting] AS [CustomFormatting], 
+    [Currency].[LimitedToStores] AS [LimitedToStores], 
+    [Currency].[Published] AS [Published], 
+    [Currency].[DisplayOrder] AS [DisplayOrder], 
+    [Currency].[CreatedOnUtc] AS [CreatedOnUtc], 
+    [Currency].[UpdatedOnUtc] AS [UpdatedOnUtc]
+    FROM [dbo].[Currency] AS [Currency]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Customer].[Id] AS [Id], 
+    [Customer].[CustomerGuid] AS [CustomerGuid], 
+    [Customer].[Username] AS [Username], 
+    [Customer].[Email] AS [Email], 
+    [Customer].[Password] AS [Password], 
+    [Customer].[PasswordFormatId] AS [PasswordFormatId], 
+    [Customer].[PasswordSalt] AS [PasswordSalt], 
+    [Customer].[AdminComment] AS [AdminComment], 
+    [Customer].[IsTaxExempt] AS [IsTaxExempt], 
+    [Customer].[AffiliateId] AS [AffiliateId], 
+    [Customer].[VendorId] AS [VendorId], 
+    [Customer].[HasShoppingCartItems] AS [HasShoppingCartItems], 
+    [Customer].[Active] AS [Active], 
+    [Customer].[Deleted] AS [Deleted], 
+    [Customer].[IsSystemAccount] AS [IsSystemAccount], 
+    [Customer].[SystemName] AS [SystemName], 
+    [Customer].[LastIpAddress] AS [LastIpAddress], 
+    [Customer].[CreatedOnUtc] AS [CreatedOnUtc], 
+    [Customer].[LastLoginDateUtc] AS [LastLoginDateUtc], 
+    [Customer].[LastActivityDateUtc] AS [LastActivityDateUtc], 
+    [Customer].[BillingAddress_Id] AS [BillingAddress_Id], 
+    [Customer].[ShippingAddress_Id] AS [ShippingAddress_Id]
+    FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DeliveryDate" EntityType="Self.DeliveryDate" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DeliveryDate].[Id] AS [Id], 
+    [DeliveryDate].[Name] AS [Name], 
+    [DeliveryDate].[DisplayOrder] AS [DisplayOrder]
+    FROM [dbo].[DeliveryDate] AS [DeliveryDate]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Discount" EntityType="Self.Discount" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Discount].[Id] AS [Id], 
+    [Discount].[Name] AS [Name], 
+    [Discount].[DiscountTypeId] AS [DiscountTypeId], 
+    [Discount].[UsePercentage] AS [UsePercentage], 
+    [Discount].[DiscountPercentage] AS [DiscountPercentage], 
+    [Discount].[DiscountAmount] AS [DiscountAmount], 
+    [Discount].[MaximumDiscountAmount] AS [MaximumDiscountAmount], 
+    [Discount].[StartDateUtc] AS [StartDateUtc], 
+    [Discount].[EndDateUtc] AS [EndDateUtc], 
+    [Discount].[RequiresCouponCode] AS [RequiresCouponCode], 
+    [Discount].[CouponCode] AS [CouponCode], 
+    [Discount].[IsCumulative] AS [IsCumulative], 
+    [Discount].[DiscountLimitationId] AS [DiscountLimitationId], 
+    [Discount].[LimitationTimes] AS [LimitationTimes], 
+    [Discount].[MaximumDiscountedQuantity] AS [MaximumDiscountedQuantity], 
+    [Discount].[AppliedToSubCategories] AS [AppliedToSubCategories]
+    FROM [dbo].[Discount] AS [Discount]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Log" EntityType="Self.Log" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Log].[Id] AS [Id], 
+    [Log].[LogLevelId] AS [LogLevelId], 
+    [Log].[ShortMessage] AS [ShortMessage], 
+    [Log].[FullMessage] AS [FullMessage], 
+    [Log].[IpAddress] AS [IpAddress], 
+    [Log].[CustomerId] AS [CustomerId], 
+    [Log].[PageUrl] AS [PageUrl], 
+    [Log].[ReferrerUrl] AS [ReferrerUrl], 
+    [Log].[CreatedOnUtc] AS [CreatedOnUtc]
+    FROM [dbo].[Log] AS [Log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Manufacturer].[Id] AS [Id], 
+    [Manufacturer].[Name] AS [Name], 
+    [Manufacturer].[Description] AS [Description], 
+    [Manufacturer].[ManufacturerTemplateId] AS [ManufacturerTemplateId], 
+    [Manufacturer].[MetaKeywords] AS [MetaKeywords], 
+    [Manufacturer].[MetaDescription] AS [MetaDescription], 
+    [Manufacturer].[MetaTitle] AS [MetaTitle], 
+    [Manufacturer].[PictureId] AS [PictureId], 
+    [Manufacturer].[PageSize] AS [PageSize], 
+    [Manufacturer].[AllowCustomersToSelectPageSize] AS [AllowCustomersToSelectPageSize], 
+    [Manufacturer].[PageSizeOptions] AS [PageSizeOptions], 
+    [Manufacturer].[PriceRanges] AS [PriceRanges], 
+    [Manufacturer].[SubjectToAcl] AS [SubjectToAcl], 
+    [Manufacturer].[LimitedToStores] AS [LimitedToStores], 
+    [Manufacturer].[Published] AS [Published], 
+    [Manufacturer].[Deleted] AS [Deleted], 
+    [Manufacturer].[DisplayOrder] AS [DisplayOrder], 
+    [Manufacturer].[CreatedOnUtc] AS [CreatedOnUtc], 
+    [Manufacturer].[UpdatedOnUtc] AS [UpdatedOnUtc]
+    FROM [dbo].[Manufacturer] AS [Manufacturer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Order" EntityType="Self.Order" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Order].[Id] AS [Id], 
+    [Order].[OrderGuid] AS [OrderGuid], 
+    [Order].[StoreId] AS [StoreId], 
+    [Order].[CustomerId] AS [CustomerId], 
+    [Order].[BillingAddressId] AS [BillingAddressId], 
+    [Order].[ShippingAddressId] AS [ShippingAddressId], 
+    [Order].[PickupAddressId] AS [PickupAddressId], 
+    [Order].[PickUpInStore] AS [PickUpInStore], 
+    [Order].[OrderStatusId] AS [OrderStatusId], 
+    [Order].[ShippingStatusId] AS [ShippingStatusId], 
+    [Order].[PaymentStatusId] AS [PaymentStatusId], 
+    [Order].[PaymentMethodSystemName] AS [PaymentMethodSystemName], 
+    [Order].[CustomerCurrencyCode] AS [CustomerCurrencyCode], 
+    [Order].[CurrencyRate] AS [CurrencyRate], 
+    [Order].[CustomerTaxDisplayTypeId] AS [CustomerTaxDisplayTypeId], 
+    [Order].[VatNumber] AS [VatNumber], 
+    [Order].[OrderSubtotalInclTax] AS [OrderSubtotalInclTax], 
+    [Order].[OrderSubtotalExclTax] AS [OrderSubtotalExclTax], 
+    [Order].[OrderSubTotalDiscountInclTax] AS [OrderSubTotalDiscountInclTax], 
+    [Order].[OrderSubTotalDiscountExclTax] AS [OrderSubTotalDiscountExclTax], 
+    [Order].[OrderShippingInclTax] AS [OrderShippingInclTax], 
+    [Order].[OrderShippingExclTax] AS [OrderShippingExclTax], 
+    [Order].[PaymentMethodAdditionalFeeInclTax] AS [PaymentMethodAdditionalFeeInclTax], 
+    [Order].[PaymentMethodAdditionalFeeExclTax] AS [PaymentMethodAdditionalFeeExclTax], 
+    [Order].[TaxRates] AS [TaxRates], 
+    [Order].[OrderTax] AS [OrderTax], 
+    [Order].[OrderDiscount] AS [OrderDiscount], 
+    [Order].[OrderTotal] AS [OrderTotal], 
+    [Order].[RefundedAmount] AS [RefundedAmount], 
+    [Order].[RewardPointsWereAdded] AS [RewardPointsWereAdded], 
+    [Order].[CheckoutAttributeDescription] AS [CheckoutAttributeDescription], 
+    [Order].[CheckoutAttributesXml] AS [CheckoutAttributesXml], 
+    [Order].[CustomerLanguageId] AS [CustomerLanguageId], 
+    [Order].[AffiliateId] AS [AffiliateId], 
+    [Order].[CustomerIp] AS [CustomerIp], 
+    [Order].[AllowStoringCreditCardNumber] AS [AllowStoringCreditCardNumber], 
+    [Order].[CardType] AS [CardType], 
+    [Order].[CardName] AS [CardName], 
+    [Order].[CardNumber] AS [CardNumber], 
+    [Order].[MaskedCreditCardNumber] AS [MaskedCreditCardNumber], 
+    [Order].[CardCvv2] AS [CardCvv2], 
+    [Order].[CardExpirationMonth] AS [CardExpirationMonth], 
+    [Order].[CardExpirationYear] AS [CardExpirationYear], 
+    [Order].[AuthorizationTransactionId] AS [AuthorizationTransactionId], 
+    [Order].[AuthorizationTransactionCode] AS [AuthorizationTransactionCode], 
+    [Order].[AuthorizationTransactionResult] AS [AuthorizationTransactionResult], 
+    [Order].[CaptureTransactionId] AS [CaptureTransactionId], 
+    [Order].[CaptureTransactionResult] AS [CaptureTransactionResult], 
+    [Order].[SubscriptionTransactionId] AS [SubscriptionTransactionId], 
+    [Order].[PaidDateUtc] AS [PaidDateUtc], 
+    [Order].[ShippingMethod] AS [ShippingMethod], 
+    [Order].[ShippingRateComputationMethodSystemName] AS [ShippingRateComputationMethodSystemName], 
+    [Order].[CustomValuesXml] AS [CustomValuesXml], 
+    [Order].[Deleted] AS [Deleted], 
+    [Order].[CreatedOnUtc] AS [CreatedOnUtc]
+    FROM [dbo].[Order] AS [Order]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="OrderItem" EntityType="Self.OrderItem" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OrderItem].[Id] AS [Id], 
+    [OrderItem].[OrderItemGuid] AS [OrderItemGuid], 
+    [OrderItem].[OrderId] AS [OrderId], 
+    [OrderItem].[ProductId] AS [ProductId], 
+    [OrderItem].[Quantity] AS [Quantity], 
+    [OrderItem].[UnitPriceInclTax] AS [UnitPriceInclTax], 
+    [OrderItem].[UnitPriceExclTax] AS [UnitPriceExclTax], 
+    [OrderItem].[PriceInclTax] AS [PriceInclTax], 
+    [OrderItem].[PriceExclTax] AS [PriceExclTax], 
+    [OrderItem].[DiscountAmountInclTax] AS [DiscountAmountInclTax], 
+    [OrderItem].[DiscountAmountExclTax] AS [DiscountAmountExclTax], 
+    [OrderItem].[OriginalProductCost] AS [OriginalProductCost], 
+    [OrderItem].[AttributeDescription] AS [AttributeDescription], 
+    [OrderItem].[AttributesXml] AS [AttributesXml], 
+    [OrderItem].[DownloadCount] AS [DownloadCount], 
+    [OrderItem].[IsDownloadActivated] AS [IsDownloadActivated], 
+    [OrderItem].[LicenseDownloadId] AS [LicenseDownloadId], 
+    [OrderItem].[ItemWeight] AS [ItemWeight], 
+    [OrderItem].[RentalStartDateUtc] AS [RentalStartDateUtc], 
+    [OrderItem].[RentalEndDateUtc] AS [RentalEndDateUtc]
+    FROM [dbo].[OrderItem] AS [OrderItem]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Product" EntityType="Self.Product" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Product].[Id] AS [Id], 
+    [Product].[ProductTypeId] AS [ProductTypeId], 
+    [Product].[ParentGroupedProductId] AS [ParentGroupedProductId], 
+    [Product].[VisibleIndividually] AS [VisibleIndividually], 
+    [Product].[Name] AS [Name], 
+    [Product].[ShortDescription] AS [ShortDescription], 
+    [Product].[FullDescription] AS [FullDescription], 
+    [Product].[AdminComment] AS [AdminComment], 
+    [Product].[ProductTemplateId] AS [ProductTemplateId], 
+    [Product].[VendorId] AS [VendorId], 
+    [Product].[ShowOnHomePage] AS [ShowOnHomePage], 
+    [Product].[MetaKeywords] AS [MetaKeywords], 
+    [Product].[MetaDescription] AS [MetaDescription], 
+    [Product].[MetaTitle] AS [MetaTitle], 
+    [Product].[AllowCustomerReviews] AS [AllowCustomerReviews], 
+    [Product].[ApprovedRatingSum] AS [ApprovedRatingSum], 
+    [Product].[NotApprovedRatingSum] AS [NotApprovedRatingSum], 
+    [Product].[ApprovedTotalReviews] AS [ApprovedTotalReviews], 
+    [Product].[NotApprovedTotalReviews] AS [NotApprovedTotalReviews], 
+    [Product].[SubjectToAcl] AS [SubjectToAcl], 
+    [Product].[LimitedToStores] AS [LimitedToStores], 
+    [Product].[Sku] AS [Sku], 
+    [Product].[ManufacturerPartNumber] AS [ManufacturerPartNumber], 
+    [Product].[Gtin] AS [Gtin], 
+    [Product].[IsGiftCard] AS [IsGiftCard], 
+    [Product].[GiftCardTypeId] AS [GiftCardTypeId], 
+    [Product].[OverriddenGiftCardAmount] AS [OverriddenGiftCardAmount], 
+    [Product].[RequireOtherProducts] AS [RequireOtherProducts], 
+    [Product].[RequiredProductIds] AS [RequiredProductIds], 
+    [Product].[AutomaticallyAddRequiredProducts] AS [AutomaticallyAddRequiredProducts], 
+    [Product].[IsDownload] AS [IsDownload], 
+    [Product].[DownloadId] AS [DownloadId], 
+    [Product].[UnlimitedDownloads] AS [UnlimitedDownloads], 
+    [Product].[MaxNumberOfDownloads] AS [MaxNumberOfDownloads], 
+    [Product].[DownloadExpirationDays] AS [DownloadExpirationDays], 
+    [Product].[DownloadActivationTypeId] AS [DownloadActivationTypeId], 
+    [Product].[HasSampleDownload] AS [HasSampleDownload], 
+    [Product].[SampleDownloadId] AS [SampleDownloadId], 
+    [Product].[HasUserAgreement] AS [HasUserAgreement], 
+    [Product].[UserAgreementText] AS [UserAgreementText], 
+    [Product].[IsRecurring] AS [IsRecurring], 
+    [Product].[RecurringCycleLength] AS [RecurringCycleLength], 
+    [Product].[RecurringCyclePeriodId] AS [RecurringCyclePeriodId], 
+    [Product].[RecurringTotalCycles] AS [RecurringTotalCycles], 
+    [Product].[IsRental] AS [IsRental], 
+    [Product].[RentalPriceLength] AS [RentalPriceLength], 
+    [Product].[RentalPricePeriodId] AS [RentalPricePeriodId], 
+    [Product].[IsShipEnabled] AS [IsShipEnabled], 
+    [Product].[IsFreeShipping] AS [IsFreeShipping], 
+    [Product].[ShipSeparately] AS [ShipSeparately], 
+    [Product].[AdditionalShippingCharge] AS [AdditionalShippingCharge], 
+    [Product].[DeliveryDateId] AS [DeliveryDateId], 
+    [Product].[IsTaxExempt] AS [IsTaxExempt], 
+    [Product].[TaxCategoryId] AS [TaxCategoryId], 
+    [Product].[IsTelecommunicationsOrBroadcastingOrElectronicServices] AS [IsTelecommunicationsOrBroadcastingOrElectronicServices], 
+    [Product].[ManageInventoryMethodId] AS [ManageInventoryMethodId], 
+    [Product].[UseMultipleWarehouses] AS [UseMultipleWarehouses], 
+    [Product].[WarehouseId] AS [WarehouseId], 
+    [Product].[StockQuantity] AS [StockQuantity], 
+    [Product].[DisplayStockAvailability] AS [DisplayStockAvailability], 
+    [Product].[DisplayStockQuantity] AS [DisplayStockQuantity], 
+    [Product].[MinStockQuantity] AS [MinStockQuantity], 
+    [Product].[LowStockActivityId] AS [LowStockActivityId], 
+    [Product].[NotifyAdminForQuantityBelow] AS [NotifyAdminForQuantityBelow], 
+    [Product].[BackorderModeId] AS [BackorderModeId], 
+    [Product].[AllowBackInStockSubscriptions] AS [AllowBackInStockSubscriptions], 
+    [Product].[OrderMinimumQuantity] AS [OrderMinimumQuantity], 
+    [Product].[OrderMaximumQuantity] AS [OrderMaximumQuantity], 
+    [Product].[AllowedQuantities] AS [AllowedQuantities], 
+    [Product].[AllowAddingOnlyExistingAttributeCombinations] AS [AllowAddingOnlyExistingAttributeCombinations], 
+    [Product].[NotReturnable] AS [NotReturnable], 
+    [Product].[DisableBuyButton] AS [DisableBuyButton], 
+    [Product].[DisableWishlistButton] AS [DisableWishlistButton], 
+    [Product].[AvailableForPreOrder] AS [AvailableForPreOrder], 
+    [Product].[PreOrderAvailabilityStartDateTimeUtc] AS [PreOrderAvailabilityStartDateTimeUtc], 
+    [Product].[CallForPrice] AS [CallForPrice], 
+    [Product].[Price] AS [Price], 
+    [Product].[OldPrice] AS [OldPrice], 
+    [Product].[ProductCost] AS [ProductCost], 
+    [Product].[SpecialPrice] AS [SpecialPrice], 
+    [Product].[SpecialPriceStartDateTimeUtc] AS [SpecialPriceStartDateTimeUtc], 
+    [Product].[SpecialPriceEndDateTimeUtc] AS [SpecialPriceEndDateTimeUtc], 
+    [Product].[CustomerEntersPrice] AS [CustomerEntersPrice], 
+    [Product].[MinimumCustomerEnteredPrice] AS [MinimumCustomerEnteredPrice], 
+    [Product].[MaximumCustomerEnteredPrice] AS [MaximumCustomerEnteredPrice], 
+    [Product].[BasepriceEnabled] AS [BasepriceEnabled], 
+    [Product].[BasepriceAmount] AS [BasepriceAmount], 
+    [Product].[BasepriceUnitId] AS [BasepriceUnitId], 
+    [Product].[BasepriceBaseAmount] AS [BasepriceBaseAmount], 
+    [Product].[BasepriceBaseUnitId] AS [BasepriceBaseUnitId], 
+    [Product].[MarkAsNew] AS [MarkAsNew], 
+    [Product].[MarkAsNewStartDateTimeUtc] AS [MarkAsNewStartDateTimeUtc], 
+    [Product].[MarkAsNewEndDateTimeUtc] AS [MarkAsNewEndDateTimeUtc], 
+    [Product].[HasTierPrices] AS [HasTierPrices], 
+    [Product].[HasDiscountsApplied] AS [HasDiscountsApplied], 
+    [Product].[Weight] AS [Weight], 
+    [Product].[Length] AS [Length], 
+    [Product].[Width] AS [Width], 
+    [Product].[Height] AS [Height], 
+    [Product].[AvailableStartDateTimeUtc] AS [AvailableStartDateTimeUtc], 
+    [Product].[AvailableEndDateTimeUtc] AS [AvailableEndDateTimeUtc], 
+    [Product].[DisplayOrder] AS [DisplayOrder], 
+    [Product].[Published] AS [Published], 
+    [Product].[Deleted] AS [Deleted], 
+    [Product].[CreatedOnUtc] AS [CreatedOnUtc], 
+    [Product].[UpdatedOnUtc] AS [UpdatedOnUtc]
+    FROM [dbo].[Product] AS [Product]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Product_Category_Mapping" EntityType="Self.Product_Category_Mapping" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Product_Category_Mapping].[Id] AS [Id], 
+    [Product_Category_Mapping].[ProductId] AS [ProductId], 
+    [Product_Category_Mapping].[CategoryId] AS [CategoryId], 
+    [Product_Category_Mapping].[IsFeaturedProduct] AS [IsFeaturedProduct], 
+    [Product_Category_Mapping].[DisplayOrder] AS [DisplayOrder]
+    FROM [dbo].[Product_Category_Mapping] AS [Product_Category_Mapping]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Store" EntityType="Self.Store" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Store].[Id] AS [Id], 
+    [Store].[Name] AS [Name], 
+    [Store].[Url] AS [Url], 
+    [Store].[SslEnabled] AS [SslEnabled], 
+    [Store].[SecureUrl] AS [SecureUrl], 
+    [Store].[Hosts] AS [Hosts], 
+    [Store].[DefaultLanguageId] AS [DefaultLanguageId], 
+    [Store].[DisplayOrder] AS [DisplayOrder], 
+    [Store].[CompanyName] AS [CompanyName], 
+    [Store].[CompanyAddress] AS [CompanyAddress], 
+    [Store].[CompanyPhoneNumber] AS [CompanyPhoneNumber], 
+    [Store].[CompanyVat] AS [CompanyVat]
+    FROM [dbo].[Store] AS [Store]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TaxRate" EntityType="Self.TaxRate" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TaxRate].[Id] AS [Id], 
+    [TaxRate].[StoreId] AS [StoreId], 
+    [TaxRate].[TaxCategoryId] AS [TaxCategoryId], 
+    [TaxRate].[CountryId] AS [CountryId], 
+    [TaxRate].[StateProvinceId] AS [StateProvinceId], 
+    [TaxRate].[Zip] AS [Zip], 
+    [TaxRate].[Percentage] AS [Percentage]
+    FROM [dbo].[TaxRate] AS [TaxRate]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Vendor" EntityType="Self.Vendor" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Vendor].[Id] AS [Id], 
@@ -54,9 +1176,32 @@ warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Vendor' does not hav
     [Vendor].[PageSizeOptions] AS [PageSizeOptions]
     FROM [dbo].[Vendor] AS [Vendor]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Warehouse].[Id] AS [Id], 
+    [Warehouse].[Name] AS [Name], 
+    [Warehouse].[AdminComment] AS [AdminComment], 
+    [Warehouse].[AddressId] AS [AddressId]
+    FROM [dbo].[Warehouse] AS [Warehouse]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AzureContactManagerDev_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -89,7 +1234,725 @@ warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Vendor' does not hav
         </EntityType>
         <EntityContainer Name="AzureContactManagerDev_dbEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Vendors" EntityType="Self.Vendor" />
+          <EntitySet Name="AspNetRoles" EntityType="AzureContactManagerDev_dbModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="AzureContactManagerDev_dbModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="AzureContactManagerDev_dbModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="AzureContactManagerDev_dbModel.AspNetUser" />
+          <EntitySet Name="Categories" EntityType="AzureContactManagerDev_dbModel.Category" />
+          <EntitySet Name="Countries" EntityType="AzureContactManagerDev_dbModel.Country" />
+          <EntitySet Name="Currencies" EntityType="AzureContactManagerDev_dbModel.Currency" />
+          <EntitySet Name="Customers" EntityType="AzureContactManagerDev_dbModel.Customer" />
+          <EntitySet Name="DeliveryDates" EntityType="AzureContactManagerDev_dbModel.DeliveryDate" />
+          <EntitySet Name="Discounts" EntityType="AzureContactManagerDev_dbModel.Discount" />
+          <EntitySet Name="Logs" EntityType="AzureContactManagerDev_dbModel.Log" />
+          <EntitySet Name="Manufacturers" EntityType="AzureContactManagerDev_dbModel.Manufacturer" />
+          <EntitySet Name="Orders" EntityType="AzureContactManagerDev_dbModel.Order" />
+          <EntitySet Name="OrderItems" EntityType="AzureContactManagerDev_dbModel.OrderItem" />
+          <EntitySet Name="Products" EntityType="AzureContactManagerDev_dbModel.Product" />
+          <EntitySet Name="Product_Category_Mapping" EntityType="AzureContactManagerDev_dbModel.Product_Category_Mapping" />
+          <EntitySet Name="Stores" EntityType="AzureContactManagerDev_dbModel.Store" />
+          <EntitySet Name="TaxRates" EntityType="AzureContactManagerDev_dbModel.TaxRate" />
+          <EntitySet Name="Warehouses" EntityType="AzureContactManagerDev_dbModel.Warehouse" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="AzureContactManagerDev_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="AzureContactManagerDev_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="AzureContactManagerDev_dbModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="AzureContactManagerDev_dbModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="AzureContactManagerDev_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="AzureContactManagerDev_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="AzureContactManagerDev_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="AzureContactManagerDev_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="AzureContactManagerDev_dbModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="CategoryTemplateId" />
+            <PropertyRef Name="ParentCategoryId" />
+            <PropertyRef Name="PictureId" />
+            <PropertyRef Name="PageSize" />
+            <PropertyRef Name="AllowCustomersToSelectPageSize" />
+            <PropertyRef Name="ShowOnHomePage" />
+            <PropertyRef Name="IncludeInTopMenu" />
+            <PropertyRef Name="SubjectToAcl" />
+            <PropertyRef Name="LimitedToStores" />
+            <PropertyRef Name="Published" />
+            <PropertyRef Name="Deleted" />
+            <PropertyRef Name="DisplayOrder" />
+            <PropertyRef Name="CreatedOnUtc" />
+            <PropertyRef Name="UpdatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTitle" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="ParentCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="PictureId" Type="Int32" Nullable="false" />
+          <Property Name="PageSize" Type="Int32" Nullable="false" />
+          <Property Name="AllowCustomersToSelectPageSize" Type="Boolean" Nullable="false" />
+          <Property Name="PageSizeOptions" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PriceRanges" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="ShowOnHomePage" Type="Boolean" Nullable="false" />
+          <Property Name="IncludeInTopMenu" Type="Boolean" Nullable="false" />
+          <Property Name="SubjectToAcl" Type="Boolean" Nullable="false" />
+          <Property Name="LimitedToStores" Type="Boolean" Nullable="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="AllowsBilling" />
+            <PropertyRef Name="AllowsShipping" />
+            <PropertyRef Name="NumericIsoCode" />
+            <PropertyRef Name="SubjectToVat" />
+            <PropertyRef Name="Published" />
+            <PropertyRef Name="DisplayOrder" />
+            <PropertyRef Name="LimitedToStores" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AllowsBilling" Type="Boolean" Nullable="false" />
+          <Property Name="AllowsShipping" Type="Boolean" Nullable="false" />
+          <Property Name="TwoLetterIsoCode" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="ThreeLetterIsoCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="NumericIsoCode" Type="Int32" Nullable="false" />
+          <Property Name="SubjectToVat" Type="Boolean" Nullable="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="LimitedToStores" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="CurrencyCode" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="LimitedToStores" />
+            <PropertyRef Name="Published" />
+            <PropertyRef Name="DisplayOrder" />
+            <PropertyRef Name="CreatedOnUtc" />
+            <PropertyRef Name="UpdatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="DisplayLocale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomFormatting" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LimitedToStores" Type="Boolean" Nullable="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CustomerGuid" />
+            <PropertyRef Name="PasswordFormatId" />
+            <PropertyRef Name="IsTaxExempt" />
+            <PropertyRef Name="AffiliateId" />
+            <PropertyRef Name="VendorId" />
+            <PropertyRef Name="HasShoppingCartItems" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="Deleted" />
+            <PropertyRef Name="IsSystemAccount" />
+            <PropertyRef Name="CreatedOnUtc" />
+            <PropertyRef Name="LastActivityDateUtc" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CustomerGuid" Type="Guid" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordFormatId" Type="Int32" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdminComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsTaxExempt" Type="Boolean" Nullable="false" />
+          <Property Name="AffiliateId" Type="Int32" Nullable="false" />
+          <Property Name="VendorId" Type="Int32" Nullable="false" />
+          <Property Name="HasShoppingCartItems" Type="Boolean" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsSystemAccount" Type="Boolean" Nullable="false" />
+          <Property Name="SystemName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="LastIpAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LastActivityDateUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BillingAddress_Id" Type="Int32" />
+          <Property Name="ShippingAddress_Id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DeliveryDate">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="DisplayOrder" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="DiscountTypeId" />
+            <PropertyRef Name="UsePercentage" />
+            <PropertyRef Name="DiscountPercentage" />
+            <PropertyRef Name="DiscountAmount" />
+            <PropertyRef Name="RequiresCouponCode" />
+            <PropertyRef Name="IsCumulative" />
+            <PropertyRef Name="DiscountLimitationId" />
+            <PropertyRef Name="LimitationTimes" />
+            <PropertyRef Name="AppliedToSubCategories" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UsePercentage" Type="Boolean" Nullable="false" />
+          <Property Name="DiscountPercentage" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="DiscountAmount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="MaximumDiscountAmount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="StartDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="EndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="RequiresCouponCode" Type="Boolean" Nullable="false" />
+          <Property Name="CouponCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsCumulative" Type="Boolean" Nullable="false" />
+          <Property Name="DiscountLimitationId" Type="Int32" Nullable="false" />
+          <Property Name="LimitationTimes" Type="Int32" Nullable="false" />
+          <Property Name="MaximumDiscountedQuantity" Type="Int32" />
+          <Property Name="AppliedToSubCategories" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="LogLevelId" />
+            <PropertyRef Name="ShortMessage" />
+            <PropertyRef Name="CreatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LogLevelId" Type="Int32" Nullable="false" />
+          <Property Name="ShortMessage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IpAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="PageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReferrerUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ManufacturerTemplateId" />
+            <PropertyRef Name="PictureId" />
+            <PropertyRef Name="PageSize" />
+            <PropertyRef Name="AllowCustomersToSelectPageSize" />
+            <PropertyRef Name="SubjectToAcl" />
+            <PropertyRef Name="LimitedToStores" />
+            <PropertyRef Name="Published" />
+            <PropertyRef Name="Deleted" />
+            <PropertyRef Name="DisplayOrder" />
+            <PropertyRef Name="CreatedOnUtc" />
+            <PropertyRef Name="UpdatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManufacturerTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTitle" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="PictureId" Type="Int32" Nullable="false" />
+          <Property Name="PageSize" Type="Int32" Nullable="false" />
+          <Property Name="AllowCustomersToSelectPageSize" Type="Boolean" Nullable="false" />
+          <Property Name="PageSizeOptions" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PriceRanges" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectToAcl" Type="Boolean" Nullable="false" />
+          <Property Name="LimitedToStores" Type="Boolean" Nullable="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="OrderGuid" />
+            <PropertyRef Name="StoreId" />
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="BillingAddressId" />
+            <PropertyRef Name="PickUpInStore" />
+            <PropertyRef Name="OrderStatusId" />
+            <PropertyRef Name="ShippingStatusId" />
+            <PropertyRef Name="PaymentStatusId" />
+            <PropertyRef Name="CurrencyRate" />
+            <PropertyRef Name="CustomerTaxDisplayTypeId" />
+            <PropertyRef Name="OrderSubtotalInclTax" />
+            <PropertyRef Name="OrderSubtotalExclTax" />
+            <PropertyRef Name="OrderSubTotalDiscountInclTax" />
+            <PropertyRef Name="OrderSubTotalDiscountExclTax" />
+            <PropertyRef Name="OrderShippingInclTax" />
+            <PropertyRef Name="OrderShippingExclTax" />
+            <PropertyRef Name="PaymentMethodAdditionalFeeInclTax" />
+            <PropertyRef Name="PaymentMethodAdditionalFeeExclTax" />
+            <PropertyRef Name="OrderTax" />
+            <PropertyRef Name="OrderDiscount" />
+            <PropertyRef Name="OrderTotal" />
+            <PropertyRef Name="RefundedAmount" />
+            <PropertyRef Name="RewardPointsWereAdded" />
+            <PropertyRef Name="CustomerLanguageId" />
+            <PropertyRef Name="AffiliateId" />
+            <PropertyRef Name="AllowStoringCreditCardNumber" />
+            <PropertyRef Name="Deleted" />
+            <PropertyRef Name="CreatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="OrderGuid" Type="Guid" Nullable="false" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="BillingAddressId" Type="Int32" Nullable="false" />
+          <Property Name="ShippingAddressId" Type="Int32" />
+          <Property Name="PickupAddressId" Type="Int32" />
+          <Property Name="PickUpInStore" Type="Boolean" Nullable="false" />
+          <Property Name="OrderStatusId" Type="Int32" Nullable="false" />
+          <Property Name="ShippingStatusId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentStatusId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethodSystemName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerCurrencyCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyRate" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="CustomerTaxDisplayTypeId" Type="Int32" Nullable="false" />
+          <Property Name="VatNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrderSubtotalInclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="OrderSubtotalExclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="OrderSubTotalDiscountInclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="OrderSubTotalDiscountExclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="OrderShippingInclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="OrderShippingExclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PaymentMethodAdditionalFeeInclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PaymentMethodAdditionalFeeExclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="TaxRates" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrderTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="OrderDiscount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="OrderTotal" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="RefundedAmount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="RewardPointsWereAdded" Type="Boolean" Nullable="false" />
+          <Property Name="CheckoutAttributeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckoutAttributesXml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerLanguageId" Type="Int32" Nullable="false" />
+          <Property Name="AffiliateId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerIp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AllowStoringCreditCardNumber" Type="Boolean" Nullable="false" />
+          <Property Name="CardType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CardName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaskedCreditCardNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CardCvv2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CardExpirationMonth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CardExpirationYear" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorizationTransactionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorizationTransactionCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorizationTransactionResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CaptureTransactionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CaptureTransactionResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubscriptionTransactionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PaidDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="ShippingMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingRateComputationMethodSystemName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomValuesXml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="OrderItemGuid" />
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="UnitPriceInclTax" />
+            <PropertyRef Name="UnitPriceExclTax" />
+            <PropertyRef Name="PriceInclTax" />
+            <PropertyRef Name="PriceExclTax" />
+            <PropertyRef Name="DiscountAmountInclTax" />
+            <PropertyRef Name="DiscountAmountExclTax" />
+            <PropertyRef Name="OriginalProductCost" />
+            <PropertyRef Name="DownloadCount" />
+            <PropertyRef Name="IsDownloadActivated" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="OrderItemGuid" Type="Guid" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UnitPriceInclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="UnitPriceExclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PriceInclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PriceExclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="DiscountAmountInclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="DiscountAmountExclTax" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="OriginalProductCost" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="AttributeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AttributesXml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DownloadCount" Type="Int32" Nullable="false" />
+          <Property Name="IsDownloadActivated" Type="Boolean" Nullable="false" />
+          <Property Name="LicenseDownloadId" Type="Int32" />
+          <Property Name="ItemWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RentalStartDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="RentalEndDateUtc" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductTypeId" />
+            <PropertyRef Name="ParentGroupedProductId" />
+            <PropertyRef Name="VisibleIndividually" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ProductTemplateId" />
+            <PropertyRef Name="VendorId" />
+            <PropertyRef Name="ShowOnHomePage" />
+            <PropertyRef Name="AllowCustomerReviews" />
+            <PropertyRef Name="ApprovedRatingSum" />
+            <PropertyRef Name="NotApprovedRatingSum" />
+            <PropertyRef Name="ApprovedTotalReviews" />
+            <PropertyRef Name="NotApprovedTotalReviews" />
+            <PropertyRef Name="SubjectToAcl" />
+            <PropertyRef Name="LimitedToStores" />
+            <PropertyRef Name="IsGiftCard" />
+            <PropertyRef Name="GiftCardTypeId" />
+            <PropertyRef Name="RequireOtherProducts" />
+            <PropertyRef Name="AutomaticallyAddRequiredProducts" />
+            <PropertyRef Name="IsDownload" />
+            <PropertyRef Name="DownloadId" />
+            <PropertyRef Name="UnlimitedDownloads" />
+            <PropertyRef Name="MaxNumberOfDownloads" />
+            <PropertyRef Name="DownloadActivationTypeId" />
+            <PropertyRef Name="HasSampleDownload" />
+            <PropertyRef Name="SampleDownloadId" />
+            <PropertyRef Name="HasUserAgreement" />
+            <PropertyRef Name="IsRecurring" />
+            <PropertyRef Name="RecurringCycleLength" />
+            <PropertyRef Name="RecurringCyclePeriodId" />
+            <PropertyRef Name="RecurringTotalCycles" />
+            <PropertyRef Name="IsRental" />
+            <PropertyRef Name="RentalPriceLength" />
+            <PropertyRef Name="RentalPricePeriodId" />
+            <PropertyRef Name="IsShipEnabled" />
+            <PropertyRef Name="IsFreeShipping" />
+            <PropertyRef Name="ShipSeparately" />
+            <PropertyRef Name="AdditionalShippingCharge" />
+            <PropertyRef Name="DeliveryDateId" />
+            <PropertyRef Name="IsTaxExempt" />
+            <PropertyRef Name="TaxCategoryId" />
+            <PropertyRef Name="IsTelecommunicationsOrBroadcastingOrElectronicServices" />
+            <PropertyRef Name="ManageInventoryMethodId" />
+            <PropertyRef Name="UseMultipleWarehouses" />
+            <PropertyRef Name="WarehouseId" />
+            <PropertyRef Name="StockQuantity" />
+            <PropertyRef Name="DisplayStockAvailability" />
+            <PropertyRef Name="DisplayStockQuantity" />
+            <PropertyRef Name="MinStockQuantity" />
+            <PropertyRef Name="LowStockActivityId" />
+            <PropertyRef Name="NotifyAdminForQuantityBelow" />
+            <PropertyRef Name="BackorderModeId" />
+            <PropertyRef Name="AllowBackInStockSubscriptions" />
+            <PropertyRef Name="OrderMinimumQuantity" />
+            <PropertyRef Name="OrderMaximumQuantity" />
+            <PropertyRef Name="AllowAddingOnlyExistingAttributeCombinations" />
+            <PropertyRef Name="NotReturnable" />
+            <PropertyRef Name="DisableBuyButton" />
+            <PropertyRef Name="DisableWishlistButton" />
+            <PropertyRef Name="AvailableForPreOrder" />
+            <PropertyRef Name="CallForPrice" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="OldPrice" />
+            <PropertyRef Name="ProductCost" />
+            <PropertyRef Name="CustomerEntersPrice" />
+            <PropertyRef Name="MinimumCustomerEnteredPrice" />
+            <PropertyRef Name="MaximumCustomerEnteredPrice" />
+            <PropertyRef Name="BasepriceEnabled" />
+            <PropertyRef Name="BasepriceAmount" />
+            <PropertyRef Name="BasepriceUnitId" />
+            <PropertyRef Name="BasepriceBaseAmount" />
+            <PropertyRef Name="BasepriceBaseUnitId" />
+            <PropertyRef Name="MarkAsNew" />
+            <PropertyRef Name="HasTierPrices" />
+            <PropertyRef Name="HasDiscountsApplied" />
+            <PropertyRef Name="Weight" />
+            <PropertyRef Name="Length" />
+            <PropertyRef Name="Width" />
+            <PropertyRef Name="Height" />
+            <PropertyRef Name="DisplayOrder" />
+            <PropertyRef Name="Published" />
+            <PropertyRef Name="Deleted" />
+            <PropertyRef Name="CreatedOnUtc" />
+            <PropertyRef Name="UpdatedOnUtc" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ProductTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ParentGroupedProductId" Type="Int32" Nullable="false" />
+          <Property Name="VisibleIndividually" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdminComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="VendorId" Type="Int32" Nullable="false" />
+          <Property Name="ShowOnHomePage" Type="Boolean" Nullable="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTitle" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="AllowCustomerReviews" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedRatingSum" Type="Int32" Nullable="false" />
+          <Property Name="NotApprovedRatingSum" Type="Int32" Nullable="false" />
+          <Property Name="ApprovedTotalReviews" Type="Int32" Nullable="false" />
+          <Property Name="NotApprovedTotalReviews" Type="Int32" Nullable="false" />
+          <Property Name="SubjectToAcl" Type="Boolean" Nullable="false" />
+          <Property Name="LimitedToStores" Type="Boolean" Nullable="false" />
+          <Property Name="Sku" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="ManufacturerPartNumber" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Gtin" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="IsGiftCard" Type="Boolean" Nullable="false" />
+          <Property Name="GiftCardTypeId" Type="Int32" Nullable="false" />
+          <Property Name="OverriddenGiftCardAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RequireOtherProducts" Type="Boolean" Nullable="false" />
+          <Property Name="RequiredProductIds" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="AutomaticallyAddRequiredProducts" Type="Boolean" Nullable="false" />
+          <Property Name="IsDownload" Type="Boolean" Nullable="false" />
+          <Property Name="DownloadId" Type="Int32" Nullable="false" />
+          <Property Name="UnlimitedDownloads" Type="Boolean" Nullable="false" />
+          <Property Name="MaxNumberOfDownloads" Type="Int32" Nullable="false" />
+          <Property Name="DownloadExpirationDays" Type="Int32" />
+          <Property Name="DownloadActivationTypeId" Type="Int32" Nullable="false" />
+          <Property Name="HasSampleDownload" Type="Boolean" Nullable="false" />
+          <Property Name="SampleDownloadId" Type="Int32" Nullable="false" />
+          <Property Name="HasUserAgreement" Type="Boolean" Nullable="false" />
+          <Property Name="UserAgreementText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRecurring" Type="Boolean" Nullable="false" />
+          <Property Name="RecurringCycleLength" Type="Int32" Nullable="false" />
+          <Property Name="RecurringCyclePeriodId" Type="Int32" Nullable="false" />
+          <Property Name="RecurringTotalCycles" Type="Int32" Nullable="false" />
+          <Property Name="IsRental" Type="Boolean" Nullable="false" />
+          <Property Name="RentalPriceLength" Type="Int32" Nullable="false" />
+          <Property Name="RentalPricePeriodId" Type="Int32" Nullable="false" />
+          <Property Name="IsShipEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="IsFreeShipping" Type="Boolean" Nullable="false" />
+          <Property Name="ShipSeparately" Type="Boolean" Nullable="false" />
+          <Property Name="AdditionalShippingCharge" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="DeliveryDateId" Type="Int32" Nullable="false" />
+          <Property Name="IsTaxExempt" Type="Boolean" Nullable="false" />
+          <Property Name="TaxCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="IsTelecommunicationsOrBroadcastingOrElectronicServices" Type="Boolean" Nullable="false" />
+          <Property Name="ManageInventoryMethodId" Type="Int32" Nullable="false" />
+          <Property Name="UseMultipleWarehouses" Type="Boolean" Nullable="false" />
+          <Property Name="WarehouseId" Type="Int32" Nullable="false" />
+          <Property Name="StockQuantity" Type="Int32" Nullable="false" />
+          <Property Name="DisplayStockAvailability" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayStockQuantity" Type="Boolean" Nullable="false" />
+          <Property Name="MinStockQuantity" Type="Int32" Nullable="false" />
+          <Property Name="LowStockActivityId" Type="Int32" Nullable="false" />
+          <Property Name="NotifyAdminForQuantityBelow" Type="Int32" Nullable="false" />
+          <Property Name="BackorderModeId" Type="Int32" Nullable="false" />
+          <Property Name="AllowBackInStockSubscriptions" Type="Boolean" Nullable="false" />
+          <Property Name="OrderMinimumQuantity" Type="Int32" Nullable="false" />
+          <Property Name="OrderMaximumQuantity" Type="Int32" Nullable="false" />
+          <Property Name="AllowedQuantities" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="AllowAddingOnlyExistingAttributeCombinations" Type="Boolean" Nullable="false" />
+          <Property Name="NotReturnable" Type="Boolean" Nullable="false" />
+          <Property Name="DisableBuyButton" Type="Boolean" Nullable="false" />
+          <Property Name="DisableWishlistButton" Type="Boolean" Nullable="false" />
+          <Property Name="AvailableForPreOrder" Type="Boolean" Nullable="false" />
+          <Property Name="PreOrderAvailabilityStartDateTimeUtc" Type="DateTime" Precision="3" />
+          <Property Name="CallForPrice" Type="Boolean" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="OldPrice" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="ProductCost" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="SpecialPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SpecialPriceStartDateTimeUtc" Type="DateTime" Precision="3" />
+          <Property Name="SpecialPriceEndDateTimeUtc" Type="DateTime" Precision="3" />
+          <Property Name="CustomerEntersPrice" Type="Boolean" Nullable="false" />
+          <Property Name="MinimumCustomerEnteredPrice" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="MaximumCustomerEnteredPrice" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="BasepriceEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="BasepriceAmount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="BasepriceUnitId" Type="Int32" Nullable="false" />
+          <Property Name="BasepriceBaseAmount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="BasepriceBaseUnitId" Type="Int32" Nullable="false" />
+          <Property Name="MarkAsNew" Type="Boolean" Nullable="false" />
+          <Property Name="MarkAsNewStartDateTimeUtc" Type="DateTime" Precision="3" />
+          <Property Name="MarkAsNewEndDateTimeUtc" Type="DateTime" Precision="3" />
+          <Property Name="HasTierPrices" Type="Boolean" Nullable="false" />
+          <Property Name="HasDiscountsApplied" Type="Boolean" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Length" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Width" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Height" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="AvailableStartDateTimeUtc" Type="DateTime" Precision="3" />
+          <Property Name="AvailableEndDateTimeUtc" Type="DateTime" Precision="3" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Product_Category_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="IsFeaturedProduct" />
+            <PropertyRef Name="DisplayOrder" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="IsFeaturedProduct" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Url" />
+            <PropertyRef Name="SslEnabled" />
+            <PropertyRef Name="DefaultLanguageId" />
+            <PropertyRef Name="DisplayOrder" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="SslEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="SecureUrl" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Hosts" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultLanguageId" Type="Int32" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyPhoneNumber" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyVat" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TaxRate">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="StoreId" />
+            <PropertyRef Name="TaxCategoryId" />
+            <PropertyRef Name="CountryId" />
+            <PropertyRef Name="StateProvinceId" />
+            <PropertyRef Name="Percentage" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="TaxCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="StateProvinceId" Type="Int32" Nullable="false" />
+          <Property Name="Zip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Percentage" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="AdminComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="AzureContactManagerDev_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AzureContactManagerDev_dbModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="AzureContactManagerDev_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AzureContactManagerDev_dbModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="AzureContactManagerDev_dbModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="AzureContactManagerDev_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -117,6 +1980,471 @@ warning 6002: The table/view 'AzureContactManagerDev_db.dbo.Vendor' does not hav
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="LimitedToStores" ColumnName="LimitedToStores" />
+                <ScalarProperty Name="SubjectToAcl" ColumnName="SubjectToAcl" />
+                <ScalarProperty Name="IncludeInTopMenu" ColumnName="IncludeInTopMenu" />
+                <ScalarProperty Name="ShowOnHomePage" ColumnName="ShowOnHomePage" />
+                <ScalarProperty Name="PriceRanges" ColumnName="PriceRanges" />
+                <ScalarProperty Name="PageSizeOptions" ColumnName="PageSizeOptions" />
+                <ScalarProperty Name="AllowCustomersToSelectPageSize" ColumnName="AllowCustomersToSelectPageSize" />
+                <ScalarProperty Name="PageSize" ColumnName="PageSize" />
+                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+                <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="CategoryTemplateId" ColumnName="CategoryTemplateId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="LimitedToStores" ColumnName="LimitedToStores" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="SubjectToVat" ColumnName="SubjectToVat" />
+                <ScalarProperty Name="NumericIsoCode" ColumnName="NumericIsoCode" />
+                <ScalarProperty Name="ThreeLetterIsoCode" ColumnName="ThreeLetterIsoCode" />
+                <ScalarProperty Name="TwoLetterIsoCode" ColumnName="TwoLetterIsoCode" />
+                <ScalarProperty Name="AllowsShipping" ColumnName="AllowsShipping" />
+                <ScalarProperty Name="AllowsBilling" ColumnName="AllowsBilling" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="LimitedToStores" ColumnName="LimitedToStores" />
+                <ScalarProperty Name="CustomFormatting" ColumnName="CustomFormatting" />
+                <ScalarProperty Name="DisplayLocale" ColumnName="DisplayLocale" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="ShippingAddress_Id" ColumnName="ShippingAddress_Id" />
+                <ScalarProperty Name="BillingAddress_Id" ColumnName="BillingAddress_Id" />
+                <ScalarProperty Name="LastActivityDateUtc" ColumnName="LastActivityDateUtc" />
+                <ScalarProperty Name="LastLoginDateUtc" ColumnName="LastLoginDateUtc" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="LastIpAddress" ColumnName="LastIpAddress" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="IsSystemAccount" ColumnName="IsSystemAccount" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="HasShoppingCartItems" ColumnName="HasShoppingCartItems" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="AffiliateId" ColumnName="AffiliateId" />
+                <ScalarProperty Name="IsTaxExempt" ColumnName="IsTaxExempt" />
+                <ScalarProperty Name="AdminComment" ColumnName="AdminComment" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordFormatId" ColumnName="PasswordFormatId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="CustomerGuid" ColumnName="CustomerGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryDates">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.DeliveryDate">
+              <MappingFragment StoreEntitySet="DeliveryDate">
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discounts">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Discount">
+              <MappingFragment StoreEntitySet="Discount">
+                <ScalarProperty Name="AppliedToSubCategories" ColumnName="AppliedToSubCategories" />
+                <ScalarProperty Name="MaximumDiscountedQuantity" ColumnName="MaximumDiscountedQuantity" />
+                <ScalarProperty Name="LimitationTimes" ColumnName="LimitationTimes" />
+                <ScalarProperty Name="DiscountLimitationId" ColumnName="DiscountLimitationId" />
+                <ScalarProperty Name="IsCumulative" ColumnName="IsCumulative" />
+                <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
+                <ScalarProperty Name="RequiresCouponCode" ColumnName="RequiresCouponCode" />
+                <ScalarProperty Name="EndDateUtc" ColumnName="EndDateUtc" />
+                <ScalarProperty Name="StartDateUtc" ColumnName="StartDateUtc" />
+                <ScalarProperty Name="MaximumDiscountAmount" ColumnName="MaximumDiscountAmount" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+                <ScalarProperty Name="UsePercentage" ColumnName="UsePercentage" />
+                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="ReferrerUrl" ColumnName="ReferrerUrl" />
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="FullMessage" ColumnName="FullMessage" />
+                <ScalarProperty Name="ShortMessage" ColumnName="ShortMessage" />
+                <ScalarProperty Name="LogLevelId" ColumnName="LogLevelId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manufacturers">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Manufacturer">
+              <MappingFragment StoreEntitySet="Manufacturer">
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="LimitedToStores" ColumnName="LimitedToStores" />
+                <ScalarProperty Name="SubjectToAcl" ColumnName="SubjectToAcl" />
+                <ScalarProperty Name="PriceRanges" ColumnName="PriceRanges" />
+                <ScalarProperty Name="PageSizeOptions" ColumnName="PageSizeOptions" />
+                <ScalarProperty Name="AllowCustomersToSelectPageSize" ColumnName="AllowCustomersToSelectPageSize" />
+                <ScalarProperty Name="PageSize" ColumnName="PageSize" />
+                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="ManufacturerTemplateId" ColumnName="ManufacturerTemplateId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CustomValuesXml" ColumnName="CustomValuesXml" />
+                <ScalarProperty Name="ShippingRateComputationMethodSystemName" ColumnName="ShippingRateComputationMethodSystemName" />
+                <ScalarProperty Name="ShippingMethod" ColumnName="ShippingMethod" />
+                <ScalarProperty Name="PaidDateUtc" ColumnName="PaidDateUtc" />
+                <ScalarProperty Name="SubscriptionTransactionId" ColumnName="SubscriptionTransactionId" />
+                <ScalarProperty Name="CaptureTransactionResult" ColumnName="CaptureTransactionResult" />
+                <ScalarProperty Name="CaptureTransactionId" ColumnName="CaptureTransactionId" />
+                <ScalarProperty Name="AuthorizationTransactionResult" ColumnName="AuthorizationTransactionResult" />
+                <ScalarProperty Name="AuthorizationTransactionCode" ColumnName="AuthorizationTransactionCode" />
+                <ScalarProperty Name="AuthorizationTransactionId" ColumnName="AuthorizationTransactionId" />
+                <ScalarProperty Name="CardExpirationYear" ColumnName="CardExpirationYear" />
+                <ScalarProperty Name="CardExpirationMonth" ColumnName="CardExpirationMonth" />
+                <ScalarProperty Name="CardCvv2" ColumnName="CardCvv2" />
+                <ScalarProperty Name="MaskedCreditCardNumber" ColumnName="MaskedCreditCardNumber" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardName" ColumnName="CardName" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="AllowStoringCreditCardNumber" ColumnName="AllowStoringCreditCardNumber" />
+                <ScalarProperty Name="CustomerIp" ColumnName="CustomerIp" />
+                <ScalarProperty Name="AffiliateId" ColumnName="AffiliateId" />
+                <ScalarProperty Name="CustomerLanguageId" ColumnName="CustomerLanguageId" />
+                <ScalarProperty Name="CheckoutAttributesXml" ColumnName="CheckoutAttributesXml" />
+                <ScalarProperty Name="CheckoutAttributeDescription" ColumnName="CheckoutAttributeDescription" />
+                <ScalarProperty Name="RewardPointsWereAdded" ColumnName="RewardPointsWereAdded" />
+                <ScalarProperty Name="RefundedAmount" ColumnName="RefundedAmount" />
+                <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+                <ScalarProperty Name="OrderDiscount" ColumnName="OrderDiscount" />
+                <ScalarProperty Name="OrderTax" ColumnName="OrderTax" />
+                <ScalarProperty Name="TaxRates" ColumnName="TaxRates" />
+                <ScalarProperty Name="PaymentMethodAdditionalFeeExclTax" ColumnName="PaymentMethodAdditionalFeeExclTax" />
+                <ScalarProperty Name="PaymentMethodAdditionalFeeInclTax" ColumnName="PaymentMethodAdditionalFeeInclTax" />
+                <ScalarProperty Name="OrderShippingExclTax" ColumnName="OrderShippingExclTax" />
+                <ScalarProperty Name="OrderShippingInclTax" ColumnName="OrderShippingInclTax" />
+                <ScalarProperty Name="OrderSubTotalDiscountExclTax" ColumnName="OrderSubTotalDiscountExclTax" />
+                <ScalarProperty Name="OrderSubTotalDiscountInclTax" ColumnName="OrderSubTotalDiscountInclTax" />
+                <ScalarProperty Name="OrderSubtotalExclTax" ColumnName="OrderSubtotalExclTax" />
+                <ScalarProperty Name="OrderSubtotalInclTax" ColumnName="OrderSubtotalInclTax" />
+                <ScalarProperty Name="VatNumber" ColumnName="VatNumber" />
+                <ScalarProperty Name="CustomerTaxDisplayTypeId" ColumnName="CustomerTaxDisplayTypeId" />
+                <ScalarProperty Name="CurrencyRate" ColumnName="CurrencyRate" />
+                <ScalarProperty Name="CustomerCurrencyCode" ColumnName="CustomerCurrencyCode" />
+                <ScalarProperty Name="PaymentMethodSystemName" ColumnName="PaymentMethodSystemName" />
+                <ScalarProperty Name="PaymentStatusId" ColumnName="PaymentStatusId" />
+                <ScalarProperty Name="ShippingStatusId" ColumnName="ShippingStatusId" />
+                <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+                <ScalarProperty Name="PickUpInStore" ColumnName="PickUpInStore" />
+                <ScalarProperty Name="PickupAddressId" ColumnName="PickupAddressId" />
+                <ScalarProperty Name="ShippingAddressId" ColumnName="ShippingAddressId" />
+                <ScalarProperty Name="BillingAddressId" ColumnName="BillingAddressId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="OrderGuid" ColumnName="OrderGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItem">
+                <ScalarProperty Name="RentalEndDateUtc" ColumnName="RentalEndDateUtc" />
+                <ScalarProperty Name="RentalStartDateUtc" ColumnName="RentalStartDateUtc" />
+                <ScalarProperty Name="ItemWeight" ColumnName="ItemWeight" />
+                <ScalarProperty Name="LicenseDownloadId" ColumnName="LicenseDownloadId" />
+                <ScalarProperty Name="IsDownloadActivated" ColumnName="IsDownloadActivated" />
+                <ScalarProperty Name="DownloadCount" ColumnName="DownloadCount" />
+                <ScalarProperty Name="AttributesXml" ColumnName="AttributesXml" />
+                <ScalarProperty Name="AttributeDescription" ColumnName="AttributeDescription" />
+                <ScalarProperty Name="OriginalProductCost" ColumnName="OriginalProductCost" />
+                <ScalarProperty Name="DiscountAmountExclTax" ColumnName="DiscountAmountExclTax" />
+                <ScalarProperty Name="DiscountAmountInclTax" ColumnName="DiscountAmountInclTax" />
+                <ScalarProperty Name="PriceExclTax" ColumnName="PriceExclTax" />
+                <ScalarProperty Name="PriceInclTax" ColumnName="PriceInclTax" />
+                <ScalarProperty Name="UnitPriceExclTax" ColumnName="UnitPriceExclTax" />
+                <ScalarProperty Name="UnitPriceInclTax" ColumnName="UnitPriceInclTax" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderItemGuid" ColumnName="OrderItemGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="AvailableEndDateTimeUtc" ColumnName="AvailableEndDateTimeUtc" />
+                <ScalarProperty Name="AvailableStartDateTimeUtc" ColumnName="AvailableStartDateTimeUtc" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="HasDiscountsApplied" ColumnName="HasDiscountsApplied" />
+                <ScalarProperty Name="HasTierPrices" ColumnName="HasTierPrices" />
+                <ScalarProperty Name="MarkAsNewEndDateTimeUtc" ColumnName="MarkAsNewEndDateTimeUtc" />
+                <ScalarProperty Name="MarkAsNewStartDateTimeUtc" ColumnName="MarkAsNewStartDateTimeUtc" />
+                <ScalarProperty Name="MarkAsNew" ColumnName="MarkAsNew" />
+                <ScalarProperty Name="BasepriceBaseUnitId" ColumnName="BasepriceBaseUnitId" />
+                <ScalarProperty Name="BasepriceBaseAmount" ColumnName="BasepriceBaseAmount" />
+                <ScalarProperty Name="BasepriceUnitId" ColumnName="BasepriceUnitId" />
+                <ScalarProperty Name="BasepriceAmount" ColumnName="BasepriceAmount" />
+                <ScalarProperty Name="BasepriceEnabled" ColumnName="BasepriceEnabled" />
+                <ScalarProperty Name="MaximumCustomerEnteredPrice" ColumnName="MaximumCustomerEnteredPrice" />
+                <ScalarProperty Name="MinimumCustomerEnteredPrice" ColumnName="MinimumCustomerEnteredPrice" />
+                <ScalarProperty Name="CustomerEntersPrice" ColumnName="CustomerEntersPrice" />
+                <ScalarProperty Name="SpecialPriceEndDateTimeUtc" ColumnName="SpecialPriceEndDateTimeUtc" />
+                <ScalarProperty Name="SpecialPriceStartDateTimeUtc" ColumnName="SpecialPriceStartDateTimeUtc" />
+                <ScalarProperty Name="SpecialPrice" ColumnName="SpecialPrice" />
+                <ScalarProperty Name="ProductCost" ColumnName="ProductCost" />
+                <ScalarProperty Name="OldPrice" ColumnName="OldPrice" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CallForPrice" ColumnName="CallForPrice" />
+                <ScalarProperty Name="PreOrderAvailabilityStartDateTimeUtc" ColumnName="PreOrderAvailabilityStartDateTimeUtc" />
+                <ScalarProperty Name="AvailableForPreOrder" ColumnName="AvailableForPreOrder" />
+                <ScalarProperty Name="DisableWishlistButton" ColumnName="DisableWishlistButton" />
+                <ScalarProperty Name="DisableBuyButton" ColumnName="DisableBuyButton" />
+                <ScalarProperty Name="NotReturnable" ColumnName="NotReturnable" />
+                <ScalarProperty Name="AllowAddingOnlyExistingAttributeCombinations" ColumnName="AllowAddingOnlyExistingAttributeCombinations" />
+                <ScalarProperty Name="AllowedQuantities" ColumnName="AllowedQuantities" />
+                <ScalarProperty Name="OrderMaximumQuantity" ColumnName="OrderMaximumQuantity" />
+                <ScalarProperty Name="OrderMinimumQuantity" ColumnName="OrderMinimumQuantity" />
+                <ScalarProperty Name="AllowBackInStockSubscriptions" ColumnName="AllowBackInStockSubscriptions" />
+                <ScalarProperty Name="BackorderModeId" ColumnName="BackorderModeId" />
+                <ScalarProperty Name="NotifyAdminForQuantityBelow" ColumnName="NotifyAdminForQuantityBelow" />
+                <ScalarProperty Name="LowStockActivityId" ColumnName="LowStockActivityId" />
+                <ScalarProperty Name="MinStockQuantity" ColumnName="MinStockQuantity" />
+                <ScalarProperty Name="DisplayStockQuantity" ColumnName="DisplayStockQuantity" />
+                <ScalarProperty Name="DisplayStockAvailability" ColumnName="DisplayStockAvailability" />
+                <ScalarProperty Name="StockQuantity" ColumnName="StockQuantity" />
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+                <ScalarProperty Name="UseMultipleWarehouses" ColumnName="UseMultipleWarehouses" />
+                <ScalarProperty Name="ManageInventoryMethodId" ColumnName="ManageInventoryMethodId" />
+                <ScalarProperty Name="IsTelecommunicationsOrBroadcastingOrElectronicServices" ColumnName="IsTelecommunicationsOrBroadcastingOrElectronicServices" />
+                <ScalarProperty Name="TaxCategoryId" ColumnName="TaxCategoryId" />
+                <ScalarProperty Name="IsTaxExempt" ColumnName="IsTaxExempt" />
+                <ScalarProperty Name="DeliveryDateId" ColumnName="DeliveryDateId" />
+                <ScalarProperty Name="AdditionalShippingCharge" ColumnName="AdditionalShippingCharge" />
+                <ScalarProperty Name="ShipSeparately" ColumnName="ShipSeparately" />
+                <ScalarProperty Name="IsFreeShipping" ColumnName="IsFreeShipping" />
+                <ScalarProperty Name="IsShipEnabled" ColumnName="IsShipEnabled" />
+                <ScalarProperty Name="RentalPricePeriodId" ColumnName="RentalPricePeriodId" />
+                <ScalarProperty Name="RentalPriceLength" ColumnName="RentalPriceLength" />
+                <ScalarProperty Name="IsRental" ColumnName="IsRental" />
+                <ScalarProperty Name="RecurringTotalCycles" ColumnName="RecurringTotalCycles" />
+                <ScalarProperty Name="RecurringCyclePeriodId" ColumnName="RecurringCyclePeriodId" />
+                <ScalarProperty Name="RecurringCycleLength" ColumnName="RecurringCycleLength" />
+                <ScalarProperty Name="IsRecurring" ColumnName="IsRecurring" />
+                <ScalarProperty Name="UserAgreementText" ColumnName="UserAgreementText" />
+                <ScalarProperty Name="HasUserAgreement" ColumnName="HasUserAgreement" />
+                <ScalarProperty Name="SampleDownloadId" ColumnName="SampleDownloadId" />
+                <ScalarProperty Name="HasSampleDownload" ColumnName="HasSampleDownload" />
+                <ScalarProperty Name="DownloadActivationTypeId" ColumnName="DownloadActivationTypeId" />
+                <ScalarProperty Name="DownloadExpirationDays" ColumnName="DownloadExpirationDays" />
+                <ScalarProperty Name="MaxNumberOfDownloads" ColumnName="MaxNumberOfDownloads" />
+                <ScalarProperty Name="UnlimitedDownloads" ColumnName="UnlimitedDownloads" />
+                <ScalarProperty Name="DownloadId" ColumnName="DownloadId" />
+                <ScalarProperty Name="IsDownload" ColumnName="IsDownload" />
+                <ScalarProperty Name="AutomaticallyAddRequiredProducts" ColumnName="AutomaticallyAddRequiredProducts" />
+                <ScalarProperty Name="RequiredProductIds" ColumnName="RequiredProductIds" />
+                <ScalarProperty Name="RequireOtherProducts" ColumnName="RequireOtherProducts" />
+                <ScalarProperty Name="OverriddenGiftCardAmount" ColumnName="OverriddenGiftCardAmount" />
+                <ScalarProperty Name="GiftCardTypeId" ColumnName="GiftCardTypeId" />
+                <ScalarProperty Name="IsGiftCard" ColumnName="IsGiftCard" />
+                <ScalarProperty Name="Gtin" ColumnName="Gtin" />
+                <ScalarProperty Name="ManufacturerPartNumber" ColumnName="ManufacturerPartNumber" />
+                <ScalarProperty Name="Sku" ColumnName="Sku" />
+                <ScalarProperty Name="LimitedToStores" ColumnName="LimitedToStores" />
+                <ScalarProperty Name="SubjectToAcl" ColumnName="SubjectToAcl" />
+                <ScalarProperty Name="NotApprovedTotalReviews" ColumnName="NotApprovedTotalReviews" />
+                <ScalarProperty Name="ApprovedTotalReviews" ColumnName="ApprovedTotalReviews" />
+                <ScalarProperty Name="NotApprovedRatingSum" ColumnName="NotApprovedRatingSum" />
+                <ScalarProperty Name="ApprovedRatingSum" ColumnName="ApprovedRatingSum" />
+                <ScalarProperty Name="AllowCustomerReviews" ColumnName="AllowCustomerReviews" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="ShowOnHomePage" ColumnName="ShowOnHomePage" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="ProductTemplateId" ColumnName="ProductTemplateId" />
+                <ScalarProperty Name="AdminComment" ColumnName="AdminComment" />
+                <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="VisibleIndividually" ColumnName="VisibleIndividually" />
+                <ScalarProperty Name="ParentGroupedProductId" ColumnName="ParentGroupedProductId" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Category_Mapping">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Product_Category_Mapping">
+              <MappingFragment StoreEntitySet="Product_Category_Mapping">
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="IsFeaturedProduct" ColumnName="IsFeaturedProduct" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="CompanyVat" ColumnName="CompanyVat" />
+                <ScalarProperty Name="CompanyPhoneNumber" ColumnName="CompanyPhoneNumber" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="DefaultLanguageId" ColumnName="DefaultLanguageId" />
+                <ScalarProperty Name="Hosts" ColumnName="Hosts" />
+                <ScalarProperty Name="SecureUrl" ColumnName="SecureUrl" />
+                <ScalarProperty Name="SslEnabled" ColumnName="SslEnabled" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaxRates">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.TaxRate">
+              <MappingFragment StoreEntitySet="TaxRate">
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="StateProvinceId" ColumnName="StateProvinceId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="TaxCategoryId" ColumnName="TaxCategoryId" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="AzureContactManagerDev_dbModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="AdminComment" ColumnName="AdminComment" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="AzureContactManagerDev_dbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
