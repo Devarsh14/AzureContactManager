@@ -15,7 +15,6 @@ namespace AzureContactManager.Controllers
         public ActionResult Index()
         {
             Vendor vendor = new Vendor();
-            
 
 
             

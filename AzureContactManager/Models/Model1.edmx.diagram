@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3773fed4c0804d88801cc1a79b9d950a" Name="Diagram1" ZoomLevel="93">
+      <Diagram DiagramId="3773fed4c0804d88801cc1a79b9d950a" Name="Diagram1" ZoomLevel="96">
         <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Vendor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.AspNetRole" Width="1.5" PointX="3.75" PointY="2.5" />
         <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="1" />
@@ -28,6 +28,106 @@
         <AssociationConnector Association="AzureContactManagerDev_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="AzureContactManagerDev_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="AzureContactManagerDev_dbModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="14.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.AclRecord" Width="1.5" PointX="13.75" PointY="14.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ActivityLog" Width="1.5" PointX="15.75" PointY="7.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ActivityLogType" Width="1.5" PointX="15.75" PointY="10.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Address" Width="1.5" PointX="15.75" PointY="13.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.AddressAttribute" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.AddressAttributeValue" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Affiliate" Width="1.5" PointX="17.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.BackInStockSubscription" Width="1.5" PointX="17.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.BlogComment" Width="1.5" PointX="7.75" PointY="17.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.BlogPost" Width="1.5" PointX="17.75" PointY="9.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Campaign" Width="1.5" PointX="9.75" PointY="17.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.CategoryTemplate" Width="1.5" PointX="11.75" PointY="17.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.CheckoutAttribute" Width="1.5" PointX="17.75" PointY="14.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.CheckoutAttributeValue" Width="1.5" PointX="13.75" PointY="18.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.CrossSellProduct" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Customer_CustomerRole_Mapping" Width="1.5" PointX="0.75" PointY="19.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.CustomerAddress" Width="1.5" PointX="19.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.CustomerAttribute" Width="1.5" PointX="19.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.CustomerAttributeValue" Width="1.5" PointX="19.75" PointY="9.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.CustomerRole" Width="1.5" PointX="19.75" PointY="12.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Discount_AppliedToCategories" Width="1.5" PointX="15.75" PointY="19.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Discount_AppliedToManufacturers" Width="1.5" PointX="19.75" PointY="16.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Discount_AppliedToProducts" Width="1.5" PointX="17.75" PointY="19.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.DiscountRequirement" Width="1.5" PointX="19.75" PointY="19.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.DiscountUsageHistory" Width="1.5" PointX="21.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Download" Width="1.5" PointX="21.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.EmailAccount" Width="1.5" PointX="21.75" PointY="7.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ExternalAuthenticationRecord" Width="1.5" PointX="7.75" PointY="21.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Forums_Forum" Width="1.5" PointX="9.75" PointY="21.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Forums_Group" Width="1.5" PointX="21.75" PointY="11.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Forums_Post" Width="1.5" PointX="21.75" PointY="14.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Forums_PostVote" Width="1.5" PointX="21.75" PointY="18.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Forums_PrivateMessage" Width="1.5" PointX="21.75" PointY="21.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Forums_Subscription" Width="1.5" PointX="0.75" PointY="22.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Forums_Topic" Width="1.5" PointX="11.75" PointY="22.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.GenericAttribute" Width="1.5" PointX="13.75" PointY="22.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.GiftCard" Width="1.5" PointX="15.75" PointY="22.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.GiftCardUsageHistory" Width="1.5" PointX="17.75" PointY="22.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.GoogleProduct" Width="1.5" PointX="23.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Language" Width="1.5" PointX="23.75" PointY="4.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.LocaleStringResource" Width="1.5" PointX="23.75" PointY="8.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.LocalizedProperty" Width="1.5" PointX="23.75" PointY="11.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ManufacturerTemplate" Width="1.5" PointX="23.75" PointY="14.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.MeasureDimension" Width="1.5" PointX="23.75" PointY="17.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.MeasureWeight" Width="1.5" PointX="23.75" PointY="20.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.MessageTemplate" Width="1.5" PointX="23.75" PointY="23.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.News" Width="1.5" PointX="25.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.NewsComment" Width="1.5" PointX="0.75" PointY="25.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.NewsLetterSubscription" Width="1.5" PointX="25.75" PointY="5.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.OrderNote" Width="1.5" PointX="25.75" PointY="8.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.PermissionRecord" Width="1.5" PointX="25.75" PointY="11.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.PermissionRecord_Role_Mapping" Width="1.5" PointX="25.75" PointY="14.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Picture" Width="1.5" PointX="25.75" PointY="17.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Poll" Width="1.5" PointX="17.75" PointY="25.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.PollAnswer" Width="1.5" PointX="19.75" PointY="25.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.PollVotingRecord" Width="1.5" PointX="25.75" PointY="21.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.PredefinedProductAttributeValue" Width="1.5" PointX="25.75" PointY="24.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Product_Manufacturer_Mapping" Width="1.5" PointX="7.75" PointY="26.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Product_Picture_Mapping" Width="1.5" PointX="27.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Product_ProductAttribute_Mapping" Width="1.5" PointX="27.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Product_ProductTag_Mapping" Width="1.5" PointX="27.75" PointY="8.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Product_SpecificationAttribute_Mapping" Width="1.5" PointX="9.75" PointY="27.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ProductAttribute" Width="1.5" PointX="27.75" PointY="11.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ProductAttributeCombination" Width="1.5" PointX="11.75" PointY="27.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ProductAttributeValue" Width="1.5" PointX="13.75" PointY="27.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ProductReview" Width="1.5" PointX="27.75" PointY="14.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ProductReviewHelpfulness" Width="1.5" PointX="27.75" PointY="18.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ProductTag" Width="1.5" PointX="27.75" PointY="21.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ProductTemplate" Width="1.5" PointX="21.75" PointY="27.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ProductWarehouseInventory" Width="1.5" PointX="27.75" PointY="24.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.QueuedEmail" Width="1.5" PointX="27.75" PointY="27.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.RecurringPayment" Width="1.5" PointX="0.75" PointY="28.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.RecurringPaymentHistory" Width="1.5" PointX="23.75" PointY="28.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.RelatedProduct" Width="1.5" PointX="29.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ReturnRequest" Width="1.5" PointX="29.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ReturnRequestAction" Width="1.5" PointX="29.75" PointY="8.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ReturnRequestReason" Width="1.5" PointX="29.75" PointY="11.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.RewardPointsHistory" Width="1.5" PointX="29.75" PointY="14.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ScheduleTask" Width="1.5" PointX="15.75" PointY="29.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.SearchTerm" Width="1.5" PointX="17.75" PointY="29.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Setting" Width="1.5" PointX="29.75" PointY="18.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Shipment" Width="1.5" PointX="29.75" PointY="21.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ShipmentItem" Width="1.5" PointX="29.75" PointY="25.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ShippingByWeight" Width="1.5" PointX="29.75" PointY="28.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ShippingMethod" Width="1.5" PointX="19.75" PointY="30.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ShippingMethodRestriction" Width="1.5" PointX="31.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.ShoppingCartItem" Width="1.5" PointX="31.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.SpecificationAttribute" Width="1.5" PointX="7.75" PointY="31.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.SpecificationAttributeOption" Width="1.5" PointX="31.75" PointY="8.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.StateProvince" Width="1.5" PointX="9.75" PointY="31.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.StoreMapping" Width="1.5" PointX="31.75" PointY="11.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.StorePickupPoint" Width="1.5" PointX="31.75" PointY="14.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.TaxCategory" Width="1.5" PointX="31.75" PointY="18.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.TierPrice" Width="1.5" PointX="31.75" PointY="21.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Topic" Width="1.5" PointX="21.75" PointY="31.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.TopicTemplate" Width="1.5" PointX="23.75" PointY="31.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.UrlRecord" Width="1.5" PointX="31.75" PointY="24.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.VendorNote" Width="1.5" PointX="31.75" PointY="27.75" />
+        <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.database_firewall_rules" Width="1.5" PointX="31.75" PointY="30.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
