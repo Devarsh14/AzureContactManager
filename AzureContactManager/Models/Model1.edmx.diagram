@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3773fed4c0804d88801cc1a79b9d950a" Name="Diagram1">
+      <Diagram DiagramId="3773fed4c0804d88801cc1a79b9d950a" Name="Diagram1" ZoomLevel="93">
         <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.Vendor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.AspNetRole" Width="1.5" PointX="3.75" PointY="2.5" />
         <EntityTypeShape EntityType="AzureContactManagerDev_dbModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="1" />
