@@ -1,0 +1,75 @@
+﻿@model AzureContactManager.Models.Shipment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Shipment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackingNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackingNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippedDateUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShippedDateUtc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryDateUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryDateUtc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminComment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOnUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOnUtc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
